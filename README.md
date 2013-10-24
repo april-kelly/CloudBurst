@@ -1,6 +1,7 @@
 CloudBurst
 ==========
 
+
 A video streaming web application for local networks.
 
 =========
@@ -15,6 +16,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
 =========
 
 Also includes code from getID3()
-by James Heinrich <info@getid3.org>               //
-available at http://getid3.sourceforge.net                 //
+by James Heinrich <info@getid3.org>
+available at http://getid3.sourceforge.net
 or http://www.getid3.org
