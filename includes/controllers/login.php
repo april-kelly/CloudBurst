@@ -8,6 +8,6 @@
 
 //includes
 if(!(defined('ABSPATH'))){
-    require_once('../path.php');
+    require_once('../../path.php');
 }
 

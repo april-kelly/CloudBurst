@@ -41,6 +41,26 @@ For the home page:
 For the login page:
 */
 
+#login{
+    margin-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    background-color: white;
+    width: 350px;
+    box-shadow: 0 5px 24px #111;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+#login h3{
+    color: #222;
+}
+
+#login em{
+    color: #999;
+}
+
 /*
 For the 404 page:
 */

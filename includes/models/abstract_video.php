@@ -119,6 +119,7 @@ class abstract_media {
 
             /**
              * This function sends the converted data to the database
+             * @TODO Upate the query statement to support the new media table.
              */
 
             //Setup the database connection

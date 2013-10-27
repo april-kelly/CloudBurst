@@ -31,6 +31,9 @@ if(!(isset($_SESSION))){
     //Page to include
     $page = '';
 
+    //Enable/Disable the nav bar
+    $nav = true;
+
 //Figure out what the user is requesting
 if(isset($_REQUEST['p'])){
     $request = $_REQUEST['p'];
@@ -41,9 +44,10 @@ if(isset($_REQUEST['p'])){
 //Determine what page the user is looking for
 switch($request){
 
-    case 'Login':
+    case 'login':
         $main_id = 'login';
-        $page = 'login.php';
+        $page = 'login_form.php';
+        $nav = false;
     break;
 
     case 'home':
@@ -97,15 +101,23 @@ switch($request){
 
 <body>
 
-    <div id="nav">
+    <?php
+        if($nav == true){
+    ?>
 
-        <?php
+        <div id="nav">
 
-            require_once(ABSPATH.'/includes/views/nav.php')
+            <?php
 
-        ?>
+                require_once(ABSPATH.'/includes/views/nav.php')
 
-    </div>
+            ?>
+
+        </div>
+
+    <?php
+        }
+    ?>
 
     <div id="<?php echo $main_id; ?>">
 
