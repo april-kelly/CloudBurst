@@ -39,7 +39,7 @@ echo '</pre>';
 
     //Type of video (tv show, movie, etc)
     if(isset($ThisFileInfo['tags']['quicktime']['stik'][0])){
-        echo "<br />\r\n".'Type:        '.$ThisFileInfo['tags']['quicktime']['stik'][0];
+        //echo "<br />\r\n".'Type:        '.$ThisFileInfo['tags']['quicktime']['stik'][0];
         $meta['type'] = $ThisFileInfo['tags']['quicktime']['stik'][0];
     }else{
         $meta['type'] = '';
@@ -48,7 +48,7 @@ echo '</pre>';
 
     //TV Show Name (name of the series)
     if(isset($ThisFileInfo['tags']['quicktime']['tv_show_name'][0])){
-        echo "<br />\r\n".'Name:        '.$ThisFileInfo['tags']['quicktime']['tv_show_name'][0];
+        //echo "<br />\r\n".'Name:        '.$ThisFileInfo['tags']['quicktime']['tv_show_name'][0];
         $meta['tv_show_name'] = $ThisFileInfo['tags']['quicktime']['tv_show_name'][0];
     }else{
         $meta['tv_show_name'] = '';
@@ -56,7 +56,7 @@ echo '</pre>';
 
     //TV Season (typically int)
     if(isset($ThisFileInfo['tags']['quicktime']['tv_season'][0])){
-        echo "<br />\r\n".'Season:      '.$ThisFileInfo['tags']['quicktime']['tv_season'][0];
+        //echo "<br />\r\n".'Season:      '.$ThisFileInfo['tags']['quicktime']['tv_season'][0];
         $meta['tv_season'] = $ThisFileInfo['tags']['quicktime']['tv_season'][0];
     }else{
         $meta['tv_season'] = '';
@@ -64,7 +64,7 @@ echo '</pre>';
 
     //TV Episode (typically int)
     if(isset($ThisFileInfo['tags']['quicktime']['tv_episode'][0])){
-       echo "<br />\r\n".'Episode:     '.$ThisFileInfo['tags']['quicktime']['tv_episode'][0];
+       //echo "<br />\r\n".'Episode:     '.$ThisFileInfo['tags']['quicktime']['tv_episode'][0];
        $meta['tv_episode'] = $ThisFileInfo['tags']['quicktime']['tv_episode'][0];
     }else{
         $meta['tv_episode'] = '';
@@ -72,7 +72,7 @@ echo '</pre>';
 
     //Description
     if(isset($ThisFileInfo['tags']['quicktime']['description'][0])){
-        echo "<br />\r\n".'Description: '.$ThisFileInfo['tags']['quicktime']['description'][0];
+        //echo "<br />\r\n".'Description: '.$ThisFileInfo['tags']['quicktime']['description'][0];
         $meta['description'] = $ThisFileInfo['tags']['quicktime']['description'][0];
     }else{
         $meta['description'] = '';
@@ -80,19 +80,19 @@ echo '</pre>';
 
     //TV Network Name
     if(isset($ThisFileInfo['tags']['quicktime']['tv_nework_name'][0])){
-        echo "<br />\r\n".'Network:     '.$ThisFileInfo['tags']['quicktime']['tv_network_name'][0];
+        //echo "<br />\r\n".'Network:     '.$ThisFileInfo['tags']['quicktime']['tv_network_name'][0];
         $meta['tv_network_name'] = $ThisFileInfo['tags']['quicktime']['tv_network_name'][0];
     }else{
         $meta['tv_network_name'] = '';
     }
 
-    echo "<br />\r\n".'Location:    '.$filename;
+    //echo "<br />\r\n".'Location:    '.$filename;
 
     $name = pathinfo($filename);
-    echo "<br />\r\n".'<a href="../video.php?src='.$name['filename'].'&title='.$name['filename'].'">';
+    //echo "<br />\r\n".'<a href="../video.php?src='.$name['filename'].'&title='.$name['filename'].'">';
     //echo $name['filename'];
-    echo 'Play';
-    echo '</a>'."</br>\r\n";
+    //echo 'Play';
+    //echo '</a>'."</br>\r\n";
 
     return $meta;
 }

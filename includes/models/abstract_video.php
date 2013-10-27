@@ -39,6 +39,7 @@ class abstract_media {
         //Control Variables
             public $item                    = '';
             public $dbc                     = '';
+            public $debug                   = true;
 
     //Define Functions
 
@@ -88,7 +89,7 @@ class abstract_media {
                 //$this->types_index = null;
                 $this->types_name = $meta['tv_show_name'];
                 $this->types_type = $meta['type'];
-                $this->types_description = 'No description available';
+                $this->types_description = 'No description available.';
 
                 //Insert the new media into types
                 $this->create_new_type();
@@ -102,6 +103,11 @@ class abstract_media {
             $this->media_description        = $meta['description'];
             $this->media_season             = $meta['tv_season'];
             $this->media_episode            = $meta['tv_episode'];
+
+            //Debug output
+            if($this->debug == true){
+                echo 'Converted: '.$this->item."<br />\r\n";;
+            }
 
             //Push to database
             $this->send();
@@ -129,10 +135,15 @@ class abstract_media {
                                          '".$this->item."',
                                          '00:00:00',
                                          '0');";
-            //$this->dbc->insert($query);
+            $this->dbc->insert($query);
 
             //Close the database connection
             $this->dbc->close();
+
+            //Debug output
+            if($this->debug == true){
+                echo 'Inserted: '.$this->item."<br />\r\n";
+            }
 
         }
 
@@ -180,11 +191,15 @@ class abstract_media {
                               '".$this->types_type."',
                               '".$this->types_name."',
                               '".$this->types_description."')";
-            echo $query;
-            //$this->dbc->insert($query);
+            $this->dbc->insert($query);
 
             //Close the database connection
             $this->dbc->close();
+
+            //Debug output
+            if($this->debug == true){
+                echo 'Inserted new type: '.$this->types_name."<br />\r\n";
+            }
 
         }
 
