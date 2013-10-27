@@ -11,8 +11,8 @@
 if(!(defined(ABSPATH))){
     require_once('../path.php');
 }
-require_once(ABSPATH.'/includes/fetch.php');
-require_once(ABSPATH.'/includes/data.php');
+require_once(ABSPATH.'/includes/controllers/fetch.php');
+require_once(ABSPATH.'/includes/controllers/data.php');
 
 //abstract_media class
 class abstract_media {

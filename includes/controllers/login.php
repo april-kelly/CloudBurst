@@ -6,7 +6,7 @@
  * Programmer:  Liam Kelly
  */
 
-//Includes
+//includes
 if(!(defined('ABSPATH'))){
     require_once('../path.php');
 }
