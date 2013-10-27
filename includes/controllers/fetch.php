@@ -4,9 +4,9 @@
 function fetch_meta($item){
 
 
-$filename = ABSPATH.'videos/'.$item;
+$filename = ABSPATH.'content/uploads/'.$item;
 // include getID3() library (can be in a different directory if full path is specified)
-require_once(ABSPATH.'includes/getID3-1.9.7/getid3/getid3.php');
+require_once(ABSPATH.'includes/controllers/getID3-1.9.7/getid3/getid3.php');
 
 // Initialize getID3 engine
 $getID3 = new getID3;

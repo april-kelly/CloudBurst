@@ -8,11 +8,8 @@
 
 //Includes
 require_once('./path.php');
-include_once(ABSPATH.'/includes/controllers/data.php');
+include_once(ABSPATH.'/includes/models/abstract_video.php');
 
-$dbc = new db;
-$dbc->connect();
-$test = $dbc->insert("INSERT INTO `video`.`tv_shows` (`index`, `type`, `name`, `season`, `episode`, `description`, `location`, `left_off`, `play_count`) VALUES (NULL, 'tv_show', 'asdfasdf', '3', '3', 'adsfasdfasdfadfadsf', 'asdfadsf', 'asdfasdf', '2');");
-$dbc->close();
-
-//var_dump($test);
+$test = new abstract_media;
+$test->item = 'mlp.mp4';
+$test->convert();

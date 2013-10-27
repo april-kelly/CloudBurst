@@ -8,8 +8,8 @@
  */
 
 //Includes
-if(!(defined(ABSPATH))){
-    require_once('../path.php');
+if(!(defined('ABSPATH'))){
+    require_once('../../path.php');
 }
 require_once(ABSPATH.'/includes/controllers/fetch.php');
 require_once(ABSPATH.'/includes/controllers/data.php');
@@ -78,13 +78,20 @@ class abstract_media {
 
             //Lookup
             $lookup = $this->lookup($meta['tv_show_name']);
-            if(count($lookup) <= 1){
+            if(!($lookup == false)){
 
                 //We exist do nothing
 
             }else{
 
+                //Define what we will put in the types tables
+                //$this->types_index = null;
+                $this->types_name = $meta['tv_show_name'];
+                $this->types_type = $meta['type'];
+                $this->types_description = 'No description available';
+
                 //Insert the new media into types
+                $this->create_new_type();
 
             }
 
@@ -113,7 +120,15 @@ class abstract_media {
             $this->dbc->connect();
 
             //Query the database
-            echo $query = '';
+            $query = "INSERT INTO `video`.`tv_shows` (`index`, `type`, `name`, `season`, `episode`, `description`, `location`, `left_off`, `play_count`)
+                           VALUES (NULL, '".$this->media_type."',
+                                         '".$this->types_name."',
+                                         '".$this->media_season."',
+                                         '".$this->media_episode."',
+                                         '".$this->media_description."',
+                                         '".$this->item."',
+                                         '00:00:00',
+                                         '0');";
             //$this->dbc->insert($query);
 
             //Close the database connection
@@ -146,6 +161,30 @@ class abstract_media {
             $this->dbc->close();
 
             return $array;
+
+        }
+
+        public function create_new_type(){
+
+            /**
+             * This function creates a new entry in the types table from metadata placed in the $this object
+             */
+
+            //Setup the database connection
+            $this->dbc = new db;
+            $this->dbc->connect();
+
+            //Query the database
+            $query = "INSERT INTO `video`.`types` (`index`, `type`, `name`, `description`)
+                      VALUES (NULL,
+                              '".$this->types_type."',
+                              '".$this->types_name."',
+                              '".$this->types_description."')";
+            echo $query;
+            //$this->dbc->insert($query);
+
+            //Close the database connection
+            $this->dbc->close();
 
         }
 
