@@ -1,5 +1,10 @@
 <?php
 
+if(!(defined('ABSPATH'))){
+    require_once('../../path.php');
+}
+
+fetch_meta('mlp.mp4');
 
 function fetch_meta($item){
 
@@ -36,6 +41,10 @@ $meta = array();
 echo '<pre>';
 //var_dump($ThisFileInfo);
 echo '</pre>';
+
+    $pic = $ThisFileInfo['comments']['picture'][0]['data'];
+    file_put_contents('test.jpg', $pic);
+
 
     //Type of video (tv show, movie, etc)
     if(isset($ThisFileInfo['tags']['quicktime']['stik'][0])){
