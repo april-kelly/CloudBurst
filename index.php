@@ -7,6 +7,11 @@
  * Date: 09/30/13
  */
 
+//includes
+if(!(defined('ABSPATH'))){
+    require_once('./path.php');
+}
+
 //Setup the user's Session
 if(!(isset($_SESSION))){
     session_start();
@@ -81,9 +86,8 @@ switch($request){
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link href="../styles/styles.css" rel="stylesheet" />
+    <link href="./includes/views/styles/styles.css" rel="stylesheet" />
 
-    <link href="./styles/styles.css" rel="stylesheet">
     <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
     <script src="http://vjs.zencdn.net/c/video.js"></script>
 
@@ -97,7 +101,7 @@ switch($request){
 
         <?php
 
-            require_once('./nav.php')
+            require_once(ABSPATH.'/includes/views/nav.php')
 
         ?>
 
@@ -108,12 +112,12 @@ switch($request){
         <?php
 
             //Include the main content of the page
-            include_once($page);
+            include_once(ABSPATH.'/includes/views/'.$page);
 
 
             //Include additional content if necessary
             if($details == true){
-                include('details.php');
+                include(ABSPATH.'/includes/views/details.php');
             }
 
          ?>
@@ -124,7 +128,7 @@ switch($request){
 
         <p>
             &copy; Copyright 2013 Liam Kelly<br />
-            Portions &copy; Copyright 2012-2013 Bluetent Marketing.
+            For more information please see the LICENSE.md file.
         </p>
 
     </div>
