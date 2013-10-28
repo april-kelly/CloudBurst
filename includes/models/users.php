@@ -51,6 +51,9 @@ class users {
         //Count row returned
         if(count($results) == '1'){
 
+            /**
+             * TODO Figure out why these return as null in login.php
+             */
             //Good login, define user data
             $this->index       = $results['index'];
             $this->firstname   = $results['firstname'];
