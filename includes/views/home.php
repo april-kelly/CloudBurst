@@ -1,4 +1,4 @@
-<ul class="bxslider">
+<ul class="bxsliderCar">
     <li class="slide"><img src="http://placehold.it/200x230&text=Show%201"></li>
     <li class="slide"><img src="http://placehold.it/200x230&text=Show%202"></li>
     <li class="slide"><img src="http://placehold.it/200x230&text=Show%203"></li>
@@ -11,9 +11,12 @@
 </ul>
 <script>
     $(document).ready(function(){
-        $(".bxslider").bxSlider({
+        $(".bxsliderCar").bxSlider({
             slideMargin: 10,
-            slideWidth: 200        
+            slideWidth: 200,
+            minSlides: 1,
+            maxSlides: 10,
+            moveSlides: 1
         });
     });
 </script>

@@ -92,11 +92,11 @@ switch($request){
 
     <link href="./includes/views/styles/styles.css" rel="stylesheet" />
 
-    <link href="/includes/libraries/jquery/video-js.css" rel="stylesheet">
+    <link href="./includes/libraries/jquery/video-js.css" rel="stylesheet">
     <link rel="stylesheet" href="/includes/libraries/bxslider/jquery.bxslider.css">
- -  <script src="/includes/libraries/jquery/jquery-1.10.2.min.js"></script>
- -  <script src="/includes/libraries/video-js/video.js"></script>
- -  <script src="/includes/libraries/bxslider/jquery.bxslider.min.js"></script>
+ -  <script src="./includes/libraries/jquery/jquery-1.10.2.min.js"></script>
+ -  <script src="./includes/libraries/video-js/video.js"></script>
+ -  <script src="./includes/libraries/bxslider/jquery.bxslider.min.js"></script>
 
 
 </head>
