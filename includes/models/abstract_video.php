@@ -59,6 +59,7 @@ class abstract_media {
             public $item                    = '';
             public $dbc                     = '';
             public $debug                   = true;
+            public $output                  = '';
 
     //Define Functions
 
