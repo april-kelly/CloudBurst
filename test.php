@@ -10,19 +10,40 @@
 require_once('./path.php');
 include_once(ABSPATH.'/includes/models/abstract_video.php');
 
+//Get user inputs
+if(isset($_REQUEST['t]'])){
+    $title = urlencode($_REQUEST['t']);
+}
+if(isset($_REQUEST['id'])){
+    $imdb_id = urlencode($_REQUEST['id']);
+}
+
+
+//Create search url
+if(isset($title)){
+    //Search by title
+    $url = 'http://mymovieapi.com/?title='.$title.'&type=json&plot=simple&episode=1&limit=1&yg=0&mt=none&lang=en-US&offset=&aka=simple&release=simple&business=0&tech=0';
+}
+if(isset($imdb_id)){
+    //Search by IMDb id
+    $url = 'http://mymovieapi.com/?ids='.$imdb_id.'&type=json&plot=simple&episode=1&lang=en-US&aka=simple&release=simple&business=0&tech=0';
+}
+
 //Fetch the movie info
-$title = urlencode($_REQUEST['t']);
-$json = file_get_contents('http://mymovieapi.com/?title='.$title.'&type=json&plot=simple&episode=1&limit=1&yg=0&mt=none&lang=en-US&offset=&aka=simple&release=simple&business=0&tech=0');
+$json = file_get_contents($url);
 
 //Convert json to array
 $array = json_decode($json);
 
 //Get rid of episode list before var_dumping
 //unset($array[0]->episodes);
+
 //Debug
+/*
 echo '<pre>';
 var_dump($array);
 echo '</pre>';
+*/
 
 //Setup the video abstraction layer
 $test = new abstract_media;
@@ -41,7 +62,7 @@ if(isset($array[0])){
 
     if(isset($array[0]->plot_simple)){
         //echo 'Plot: '.$array[0]->plot_simple."<br /> \r\n";
-        $test->plot_simple = $array->plot_simple;
+        $test->plot_simple = $array[0]->plot_simple;
     }
 
     if(isset($array[0]->year)){
@@ -100,7 +121,8 @@ if(isset($array[0])){
     }
 
     if(isset($array[0]->imdb_id)){
-        echo 'IMDb id: '.$array[0]->imdb_id."<br /> \r\n";
+        //echo 'IMDb id: '.$array[0]->imdb_id."<br /> \r\n";
+        $test->ibdb_id = $array[0]->imdb_id;
     }
 }
 
