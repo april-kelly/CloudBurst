@@ -11,9 +11,10 @@ require_once('./path.php');
 include_once(ABSPATH.'/includes/models/abstract_video.php');
 
 //Get user inputs
-if(isset($_REQUEST['t]'])){
+if(isset($_REQUEST['t'])){
     $title = urlencode($_REQUEST['t']);
 }
+
 if(isset($_REQUEST['id'])){
     $imdb_id = urlencode($_REQUEST['id']);
 }
@@ -24,6 +25,7 @@ if(isset($title)){
     //Search by title
     $url = 'http://mymovieapi.com/?title='.$title.'&type=json&plot=simple&episode=1&limit=1&yg=0&mt=none&lang=en-US&offset=&aka=simple&release=simple&business=0&tech=0';
 }
+
 if(isset($imdb_id)){
     //Search by IMDb id
     $url = 'http://mymovieapi.com/?ids='.$imdb_id.'&type=json&plot=simple&episode=1&lang=en-US&aka=simple&release=simple&business=0&tech=0';
