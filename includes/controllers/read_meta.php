@@ -38,12 +38,16 @@ getid3_lib::CopyTagsToComments($ThisFileInfo);
 
 $meta = array();
 
+//Dump the results we get
+/*
 echo '<pre>';
     var_dump($ThisFileInfo);
 echo '</pre>';
+*/
 
-    $pic = $ThisFileInfo['comments']['picture'][0]['data'];
-    file_put_contents('test.jpg', $pic);
+    //Dump the video poster
+    //$pic = $ThisFileInfo['comments']['picture'][0]['data'];
+    //file_put_contents('test.jpg', $pic);
 
 
     //Type of video (tv show, movie, etc)

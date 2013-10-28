@@ -11,7 +11,7 @@
 if(!(defined('ABSPATH'))){
     require_once('../../path.php');
 }
-require_once(ABSPATH.'/includes/controllers/fetch.php');
+require_once(ABSPATH . '/includes/controllers/read_meta.php');
 require_once(ABSPATH.'/includes/controllers/data.php');
 
 //abstract_media class
