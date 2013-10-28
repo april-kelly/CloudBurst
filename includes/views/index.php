@@ -85,8 +85,10 @@ switch($request){
 
     <link href="./styles/styles.css" rel="stylesheet">
     <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+    <link rel="stylesheet" href="/includes/libraries/bxslider/jquery.bxslider.css">
+    <script src="/includes/libraries/jquery/jquery-1.10.2.min.js"></script>
     <script src="http://vjs.zencdn.net/c/video.js"></script>
-
+    <script src="/includes/libraries/bxslider/jquery.bxslider.min.js"></script>
 
 
 </head>
