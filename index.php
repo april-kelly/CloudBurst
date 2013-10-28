@@ -98,7 +98,7 @@ switch($request){
  -  <script src="./includes/libraries/video-js/video.js"></script>
  -  <script src="./includes/libraries/bxslider/jquery.bxslider.min.js"></script>
 
-
+    <link href="http://bxslider.com/lib/jquery.bxslider.css" rel="stylesheet" />
 </head>
 
 <body>
