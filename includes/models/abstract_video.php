@@ -176,6 +176,8 @@ class abstract_media {
 
         }
 
+
+        //Create a new entry in the types table
         public function create_new_type(){
 
             /**
@@ -201,6 +203,11 @@ class abstract_media {
             if($this->debug == true){
                 echo 'Inserted new type: '.$this->types_name."<br />\r\n";
             }
+
+        }
+
+        //A very primative output of all titles in the types table
+        public function fetch_list(){
 
         }
 
