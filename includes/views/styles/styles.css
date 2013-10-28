@@ -30,7 +30,7 @@ For the home page:
 */
 
 #home{
-    margin-top: 50px;
+    margin-top: 80px;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
@@ -95,9 +95,11 @@ For the nav bar:
 #nav{
     background: rgba(200,200,200,1);
     position: fixed;
-    margin-left: 1%;
-    margin-right: 1%;
-    width: 98%;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    margin-left: auto;
+    margin-right: auto;
     height: 50px;
     z-index: 10000;
     box-shadow: 0 5px 24px #111;
