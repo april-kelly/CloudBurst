@@ -11,20 +11,61 @@ if(!(defined('ABSPATH'))){
     require_once('../../path.php');
 }
 require_once(ABSPATH.'/includes/controllers/get_ip.php');
+require_once(ABSPATH.'/includes/models/users.php');
 
-//Determine if user is on the lan
-$local = is_local();
+//Start session
+if(!(isset($_SESSION))){
+    session_start();
+}
 
-//Attempt to log the user in if not on lan
-if(!($local == true)){
+//Setup users object
+$users = new users;
 
-    //User is NOT local
+//Determine if the user is trying to login
+if(isset($_REQUEST['username'])){
 
-}else{
+    //User is attempting to login
+    $users->username = $_REQUEST['username'];
+    $users->password = $_REQUEST['password'];
+    $login = $users->login();
 
-    //User IS local
+    //Determine if the login was a success
+    if($login == true){
 
-    //Create local user
+        //Good login, setup session
+        $_SESSION['user_id']     = $users->index;
+        $_SESSION['firstname']   = $users->firstname;
+        $_SESSION['lastname']    = $users->lastname;
+        $_SESSION['username']    = $users->username;
+        $_SESSION['password']    = $users->password;
+        $_SESSION['login_count'] = $users->login_count;
+        $_SESSION['last_ip']     = $users->last_ip;
+        $_SESSION['admin']       = $users->admin;
 
+
+    }else{
+
+        //Bad login, send the user back to the login form
+        header('location: ./?p=login&e=badlogin');
+    }
+
+}elseif(!($_SESSION['user_id'])){
+
+    //We are trying to verify a login
+
+        //Determine if user is on lan
+        $local = is_local();
+
+        if($local = true){
+
+            //User is local, we'll setup a session
+
+
+        }else{
+
+            //User is not local we'll send them to the login page
+            header('location: ./?p=login');
+
+        }
 
 }
