@@ -38,7 +38,8 @@
             slideWidth: 200,
             minSlides: 1,
             maxSlides: 10,
-            moveSlides: 1
+            moveSlides: 1,
+            infiniteLoop: false
         });
     });
 </script>
