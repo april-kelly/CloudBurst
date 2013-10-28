@@ -39,7 +39,7 @@ getid3_lib::CopyTagsToComments($ThisFileInfo);
 $meta = array();
 
 echo '<pre>';
-//var_dump($ThisFileInfo);
+    var_dump($ThisFileInfo);
 echo '</pre>';
 
     $pic = $ThisFileInfo['comments']['picture'][0]['data'];
