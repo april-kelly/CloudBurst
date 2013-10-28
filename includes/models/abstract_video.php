@@ -36,6 +36,25 @@ class abstract_media {
             public $types_name              = '';
             public $types_description       = '';
 
+        //IMDb Data
+
+            public $cover                   = '';
+            public $title                   = '';
+            public $plot_simple             = '';
+            public $year                    = '';
+            public $rated                   = '';
+            public $rating                  = '';
+            public $runtime                 = '';
+            public $genres                  = '';
+            public $language                = '';
+            public $country                 = '';
+            public $actors                  = '';
+            public $writers                 = '';
+            public $directors               = '';
+            public $filming_locations       = '';
+            public $ibdb_id                 = '';
+
+
         //Control Variables
             public $item                    = '';
             public $dbc                     = '';
