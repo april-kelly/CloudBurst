@@ -90,7 +90,7 @@ switch($request){
     <script src="http://vjs.zencdn.net/c/video.js"></script>
     <script src="/includes/libraries/bxslider/jquery.bxslider.min.js"></script>
 
-
+ 
 </head>
 
 <body>
