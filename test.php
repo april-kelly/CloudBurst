@@ -9,3 +9,10 @@
 //Includes
 require_once('./path.php');
 include_once(ABSPATH.'/includes/models/abstract_video.php');
+include_once(ABSPATH.'/includes/models/users.php');
+
+$users = new users;
+$users->username = 'kd0hdf@gmail.com';
+$users->password = 'grapeshirt';
+$test = $users->login();
+var_dump($test);
