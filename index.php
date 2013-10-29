@@ -41,6 +41,11 @@ if(isset($_REQUEST['p'])){
     $request = 'home';
 }
 
+//Send error messages to pages
+if(isset($_REQUEST['e'])){
+    $_SESSION['e'] = $_REQUEST['e'];
+}
+
 //Determine what page the user is looking for
 switch($request){
 

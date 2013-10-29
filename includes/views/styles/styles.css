@@ -132,3 +132,15 @@ For the settings
     background-color: lightgray;
     border-left: solid 1px black;
 }
+
+/*
+For the informational classes (errors and info)
+*/
+
+.info {
+    color: gray;
+}
+
+.error{
+    color: red;
+}

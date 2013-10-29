@@ -31,7 +31,7 @@ if(isset($_REQUEST['username'])){
 
     //Determine if the login was a success
     if($login == true){
-var_dump($users);
+
         //Good login, setup session
         $_SESSION['user_id']     = $users->index;
         $_SESSION['firstname']   = $users->firstname;
@@ -42,10 +42,11 @@ var_dump($users);
         $_SESSION['last_ip']     = $users->last_ip;
         $_SESSION['admin']       = $users->admin;
 
+
     }else{
 
         //Bad login, send the user back to the login form
-        header('location: ./?p=login&e=badlogin');
+        header('location: ../../?p=login&e=badlogin');
 
     }
 
@@ -68,13 +69,14 @@ var_dump($users);
             $_SESSION['last_ip']     = $_SERVER['REMOTE_ADDR'];
             $_SESSION['admin']       = '';
 
+            //Send the user to the home page
+            header('location: ../../?p=home');
 
         }else{
 
             //User is not local we'll send them to the login page
-            header('location: ./?p=login');
+            header('location: ../../?p=login');
 
         }
 
 }
-var_dump($_SESSION);

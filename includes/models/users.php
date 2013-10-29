@@ -45,24 +45,21 @@ class users {
         $this->password = hash('SHA512', $this->password);
 
         //look for user in database
-        $query = 'SELECT * FROM users WHERE username = `'.$this->username.'` AND password = `'.$this->password.'`';
+        $query = "SELECT * FROM users WHERE `username` = '".$this->username."' AND `password` = '".$this->password."'";
         $results = $dbc->query($query);
 
         //Count row returned
-        if(count($results) == '1'){
+        if(count($results) == '1' && isset($results[0]['index'])){
 
-            /**
-             * TODO Figure out why these return as null in login.php
-             */
             //Good login, define user data
-            $this->index       = $results['index'];
-            $this->firstname   = $results['firstname'];
-            $this->lastname    = $results['lastname'];
-            $this->username    = $results['username'];
-            $this->password    = $results['password'];
-            $this->login_count = $results['login_count'];
-            $this->last_ip     = $results['last_ip'];
-            $this->admin       = $results['admin'];
+            $this->index       = $results[0]['index'];
+            $this->firstname   = $results[0]['firstname'];
+            $this->lastname    = $results[0]['lastname'];
+            $this->username    = $results[0]['username'];
+            $this->password    = $results[0]['password'];
+            $this->login_count = $results[0]['login_count'];
+            $this->last_ip     = $results[0]['last_ip'];
+            $this->admin       = $results[0]['admin'];
 
             return true;
 
