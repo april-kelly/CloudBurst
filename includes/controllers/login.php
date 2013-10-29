@@ -42,6 +42,8 @@ if(isset($_REQUEST['username'])){
         $_SESSION['last_ip']     = $users->last_ip;
         $_SESSION['admin']       = $users->admin;
 
+        //Send the user to the home page
+        header('location: ../../?p=home');
 
     }else{
 
