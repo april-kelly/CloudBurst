@@ -79,7 +79,10 @@ switch($request){
     case 'logout':
         $main_id = 'login';
         $page = 'login_form.php';
+        $nav = false;
         session_destroy();
+    break;
+
     default:
         $main_id = 'fourohfour';
         $page = './errors/404.php';

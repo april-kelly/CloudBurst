@@ -16,6 +16,9 @@ require_once(ABSPATH.'/includes/models/users.php');
 //Start session
 if(!(isset($_SESSION))){
     session_start();
+}else{
+    session_destroy();
+    session_start();
 }
 
 //Setup users object
@@ -62,7 +65,7 @@ if(isset($_REQUEST['username'])){
         if($local = true){
 
             //User is local, we'll setup a session
-            $_SESSION['user_id']     = null;
+            $_SESSION['user_id']     = '0';
             $_SESSION['firstname']   = 'Local';
             $_SESSION['lastname']    = '';
             $_SESSION['username']    = 'local';

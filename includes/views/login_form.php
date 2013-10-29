@@ -6,6 +6,21 @@
  * Programmer:  Liam Kelly
  */
 
+//includes
+if(!(defined('ABSPATH'))){
+    require_once('../../path.php');
+}
+require_once(ABSPATH.'includes/controllers/get_ip.php');
+
+//Check to see if user is on lan
+if(is_local() && !($_SESSION['user_id'] == '0')){
+
+    //Send to login.php
+    header('location: ./includes/controllers/login.php');
+    echo 'is local';
+
+}
+
 ?>
 
 <form action="./includes/controllers/login.php" method="post">
