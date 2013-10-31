@@ -66,11 +66,11 @@ class abstract_media {
         public function convert() {
 
             /**
-             * This function converts metadata to a database friendly format
+             * This function converts metadata embedded in the video file to a database friendly format
              */
 
             //Fetch the metadata
-            $meta = fetch_meta($this->item);
+            $meta = read_meta($this->item);
 
             //Lookup
             $lookup = $this->lookup($meta['tv_show_name']);
@@ -122,7 +122,7 @@ class abstract_media {
             $this->dbc->connect();
 
             //Query the database
-            $query = "INSERT INTO `video`.`tv_shows` (`index`, `type`, `name`, `season`, `episode`, `description`, `location`, `left_off`, `play_count`)
+            $query = "INSERT INTO `metadata` (`index`, `type`, `name`, `season`, `episode`, `description`, `location`, `left_off`, `play_count`)
                            VALUES (NULL, '".$this->media_type."',
                                          '".$this->types_name."',
                                          '".$this->media_season."',
@@ -131,7 +131,8 @@ class abstract_media {
                                          '".$this->item."',
                                          '00:00:00',
                                          '0');";
-            $this->dbc->insert($query);
+            //$this->dbc->insert($query);
+            echo $query;
 
             //Close the database connection
             $this->dbc->close();

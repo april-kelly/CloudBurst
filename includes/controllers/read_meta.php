@@ -4,9 +4,7 @@ if(!(defined('ABSPATH'))){
     require_once('../../path.php');
 }
 
-fetch_meta('mlp.mp4');
-
-function fetch_meta($item){
+function read_meta($item){
 
 
 $filename = ABSPATH.'content/uploads/'.$item;
