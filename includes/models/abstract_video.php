@@ -21,39 +21,38 @@ class abstract_media {
 
         //Database Fields
 
+            //metadata table
+
+                public $index = '';
+                public $subset_id = '';
+                public $ibdb_id                 = '';
+                public $cover                   = '';
+                public $title                   = '';
+                public $plot_simple             = '';
+                public $year                    = '';
+                public $rated                   = '';
+                public $rating                  = '';
+                public $runtime                 = '';
+                public $genres                  = '';
+                public $language                = '';
+                public $country                 = '';
+                public $actors                  = '';
+                public $writers                 = '';
+                public $directors               = '';
+                public $filming_locations       = '';
+                public $season                  = '';
+                public $episode                 = '';
+                public $episode_name            = '';
+                public $episode_description     = '';
+                public $comments                = '';
+
+
             //media table
-            public $media_index             = '';
-            public $media_type              = '';
-            public $media_location          = '';
-            public $media_description       = '';
-            public $media_season            = '';
-            public $media_episode           = '';
-            public $media_title             = '';
 
-            //types table
-            public $types_index             = '';
-            public $types_type              = '';
-            public $types_name              = '';
-            public $types_description       = '';
-
-        //IMDb Data
-
-            public $cover                   = '';
-            public $title                   = '';
-            public $plot_simple             = '';
-            public $year                    = '';
-            public $rated                   = '';
-            public $rating                  = '';
-            public $runtime                 = '';
-            public $genres                  = '';
-            public $language                = '';
-            public $country                 = '';
-            public $actors                  = '';
-            public $writers                 = '';
-            public $directors               = '';
-            public $filming_locations       = '';
-            public $ibdb_id                 = '';
-
+                public $media_index             = '';
+                public $media_metadata_id       = '';
+                public $media_location          = '';
+                public $media_comments          = '';
 
         //Control Variables
             public $item                    = '';
@@ -62,30 +61,6 @@ class abstract_media {
             public $output                  = '';
 
     //Define Functions
-
-        //Rest Fields
-        public function reset_fields(){
-
-            /**
-             * This function resets all field values to an empty state
-             */
-
-            //Reset fields
-            $this->media_index              = null;
-            $this->media_type               = null;
-            $this->media_location           = null;
-            $this->media_description        = null;
-            $this->media_season             = null;
-            $this->media_episode            = null;
-            $this->types_index              = null;
-            $this->types_type               = null;
-            $this->types_name               = null;
-            $this->types_description        = null;
-
-            //return
-            return true;
-
-        }
 
         //Convert
         public function convert() {
