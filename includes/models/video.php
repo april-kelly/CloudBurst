@@ -81,6 +81,7 @@ class video {
 
         //Setup output buffering
         ob_start();
+        echo '<h3>Function: read_meta() called:</h3>'."\r\n";
 
         //Type of video (tv show, movie, etc) (not supported currently in db)
         /*
@@ -140,7 +141,7 @@ class video {
         */
 
         //End output buffering
-        echo "<br /><br />\r\n\r\n";
+        echo "<hr /><br /><br />\r\n\r\n";
         $this->output_buffer = $this->output_buffer.ob_end_flush();
 
         //Return the metadata
@@ -196,6 +197,7 @@ class video {
 
         //Setup output buffering
         ob_start();
+        echo '<h3>Function: fetch_imdb() called:</h3>'."\r\n";
 
         //Fetch the movie info
         $json = file_get_contents($url);
@@ -292,6 +294,7 @@ class video {
         }
 
         //Save the output buffer contents in the output variable
+        echo "<hr /><br /><br />\r\n\r\n";
         $this->output_buffer = $this->output_buffer.ob_end_flush();
 
         //Return the abstract video object
@@ -316,6 +319,20 @@ class video {
          * Updates the media table with the contents of this object
          */
 
+    }
+
+    //output
+    public function output(){
+
+        /**
+         * Sends the contents of the output_buffer variable
+         */
+
+        //Send the output buffer;
+        echo $this->output_buffer;
+
+        //return
+        return true;
     }
 
 

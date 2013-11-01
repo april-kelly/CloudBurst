@@ -15,4 +15,4 @@ include_once(ABSPATH.'/includes/models/video.php');
 $test = new video;
 $test->read_meta('mlp.mp4');
 $test->fetch_imdb();
-echo $test->output_buffer;
+echo $test->output();
