@@ -207,11 +207,20 @@ class video {
 
     }
 
-    //insert
-    public function insert(){
+    //create_media
+    public function create_media(){
 
         /**
-         * Inserts a video file into the database
+         * Creates an entry in the media table
+         */
+
+    }
+
+    //create_metadata
+    public function create_metadata(){
+
+        /**
+         * Creates an entry in the metadata table
          */
 
     }
