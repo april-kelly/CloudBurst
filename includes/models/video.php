@@ -68,6 +68,7 @@ class video {
 
         //Define which file we will read
         $filename = ABSPATH.'content/uploads/'.$filename;
+        $this->media_location = $filename;
 
         //setup getID3
         $getID3 = new getID3;
@@ -156,6 +157,45 @@ class video {
          * Determines if a file is already in the database
          */
 
+        //Setup output buffering
+        ob_start();
+        echo '<h3>Function: lookup() called:</h3>'."\r\n";
+
+        //Setup the database connection
+        $this->dbc = new db;
+        $this->dbc->connect();
+
+        //Determine if the name is in the database
+
+        //Prep string for search
+        $name = $this->dbc->sanitize($this->media_location);
+        $name = strtolower($name);
+
+        //Query the database
+        $query = "SELECT * FROM `media` WHERE `location` LIKE '%".$name."%'";
+        $array = $this->dbc->query($query);
+
+        //Close the database connection
+        $this->dbc->close();
+
+        //Process the results
+        if(count($array) >= 1 && isset($array[0]['index'])){
+
+            //The file IS in the db
+            echo 'File IS in the database.<br />'."\r\n";
+            return true;
+
+        }else{
+
+            //The file is NOT in the db
+            echo 'File is NOT in the database.<br />'."\r\n";
+            return false;
+
+        }
+
+        //Save the output buffer contents in the output variable
+        echo "<hr /><br /><br />\r\n\r\n";
+        $this->output_buffer = $this->output_buffer.ob_end_flush();
 
     }
 

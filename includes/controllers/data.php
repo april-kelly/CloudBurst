@@ -20,7 +20,7 @@ class db {
         public $db_host = 'localhost';
         public $db_user = 'root';
         public $db_pass = 'kd0hdf';
-        public $db_database = 'video';
+        public $db_database = 'cloudburst';
 
         //mysqli object
         public $dbc;
@@ -30,7 +30,7 @@ class db {
 
         //Connect
         $this->dbc = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_database)
-            or die("Could not connect!");
+            or die("Could not connect to database!");
 
     }
 
