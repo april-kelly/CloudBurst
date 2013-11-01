@@ -23,7 +23,7 @@ class video {
 
             public $index = '';
             public $subset_id = '';
-            public $ibdb_id                 = '';
+            public $imdb_id                 = '';
             public $cover                   = '';
             public $title                   = '';
             public $plot_simple             = '';
@@ -140,6 +140,7 @@ class video {
         */
 
         //End output buffering
+        echo "<br /><br />\r\n\r\n";
         $this->output_buffer = $this->output_buffer.ob_end_flush();
 
         //Return the metadata
@@ -153,6 +154,7 @@ class video {
         /**
          * Determines if a file is already in the database
          */
+
 
     }
 
@@ -171,6 +173,129 @@ class video {
         /**
          * Fetches meta data from IMDb
          */
+
+        //Determine how we will be searching IMDb
+        if(!(empty($this->imdb_id))){
+
+            //Search via IMDb id
+            $imdb_id = urlencode($this->imdb_id);
+            $url = 'http://mymovieapi.com/?ids='.$imdb_id.'&type=json&plot=simple&episode=1&lang=en-US&aka=simple&release=simple&business=0&tech=0';
+
+        }elseif(!(empty($this->title))){
+
+            //Search via title
+            $title = urlencode($this->title);
+            $url = 'http://mymovieapi.com/?title='.$title.'&type=json&plot=simple&episode=1&limit=1&yg=0&mt=none&lang=en-US&offset=&aka=simple&release=simple&business=0&tech=0';
+
+        }else{
+
+            //Nothing to query
+            return false;
+
+        }
+
+        //Setup output buffering
+        ob_start();
+
+        //Fetch the movie info
+        $json = file_get_contents($url);
+
+        //Convert json to array
+        $array = json_decode($json);
+
+        //Get rid of episode list before var_dumping
+        //unset($array[0]->episodes);
+
+        //Debug
+        /*
+        echo '<pre>';
+        var_dump($array);
+        echo '</pre>';
+        */
+
+        //Echo the results
+        if(isset($array[0])){
+            if(isset($array[0]->poster->cover)){
+                echo '<img src="'.$array[0]->poster->cover.'" /><br />';
+                $this->cover = $array[0]->poster->cover;
+            }
+
+            if(isset($array[0]->title)){
+                echo 'Title: '.$array[0]->title."<br /> \r\n";
+                $this->title = $array[0]->title;
+            }
+
+            if(isset($array[0]->plot_simple)){
+                echo 'Plot: '.$array[0]->plot_simple."<br /> \r\n";
+                $this->plot_simple = $array[0]->plot_simple;
+            }
+
+            if(isset($array[0]->year)){
+                echo 'Year: '.$array[0]->year."<br /> \r\n";
+                $this->year = $array[0]->year;
+            }
+
+            if(isset($array[0]->rated)){
+                echo 'Rated: '.$array[0]->rated."<br /> \r\n";
+                $this->rated = $array[0]->rated;
+            }
+
+            if(isset($array[0]->rating)){
+                echo 'Rating: '.$array[0]->rating."<br /> \r\n";
+                $this->rating = $array[0]->rating;
+            }
+
+            if(isset($array[0]->runtime)){
+                echo 'Runtime(s): '.implode(', ', $array[0]->runtime)."<br /> \r\n";
+                $this->runtime = $array[0]->runtime;
+            }
+
+            if(isset($array[0]->genres)){
+                echo 'Genre(s): '.implode(', ', $array[0]->genres)."<br /> \r\n";
+                $this->genres = $array[0]->genres;
+            }
+
+            if(isset($array[0]->language)){
+                echo 'Language(s): '.implode(', ', $array[0]->language)."<br /> \r\n";
+                $this->language = $array[0]->language;
+            }
+
+            if(isset($array[0]->country)){
+                echo 'Country(s): '.implode(', ', $array[0]->country)."<br /> \r\n";
+                $this->country = $array[0]->country;
+            }
+
+            if(isset($array[0]->actors)){
+                echo 'Actors: '.implode(', ', $array[0]->actors)."<br /> \r\n";
+                $this->actors = $array[0]->actors;
+            }
+
+            if(isset($array[0]->directors)){
+                echo 'Director(s): '.implode(', ', $array[0]->directors)."<br /> \r\n";
+                $this->directors = $array[0]->directors;
+            }
+
+            if(isset($array[0]->writers)){
+                echo 'Writer(s): '.implode(', ', $array[0]->writers)."<br /> \r\n";
+                $this->writers = $array[0]->writers;
+            }
+
+            if(isset($array[0]->filming_locations)){
+                echo 'Filming Location(s): '.$array[0]->filming_locations."<br /> \r\n"; //This is output as a string for some reason
+                $this->filming_locations = $array[0]->filming_locations;
+            }
+
+            if(isset($array[0]->imdb_id)){
+                echo 'IMDb id: '.$array[0]->imdb_id."<br /> \r\n";
+                $this->ibdb_id = $array[0]->imdb_id;
+            }
+        }
+
+        //Save the output buffer contents in the output variable
+        $this->output_buffer = $this->output_buffer.ob_end_flush();
+
+        //Return the abstract video object
+        return $this;
 
     }
 
