@@ -182,20 +182,28 @@ class video {
         if(count($array) >= 1 && isset($array[0]['index'])){
 
             //The file IS in the db
-            echo 'File IS in the database.<br />'."\r\n";
+            echo 'File: '.$this->media_location.' IS in the database.<br />'."\r\n";
+
+            //Save the output buffer contents in the output variable
+            echo "<hr /><br /><br />\r\n\r\n";
+            $this->output_buffer = $this->output_buffer.ob_end_flush();
+
+            //Return
             return true;
 
         }else{
 
             //The file is NOT in the db
-            echo 'File is NOT in the database.<br />'."\r\n";
+            echo 'File: '.$this->media_location.' is NOT in the database.<br />'."\r\n";
+
+            //Save the output buffer contents in the output variable
+            echo "<hr /><br /><br />\r\n\r\n";
+            $this->output_buffer = $this->output_buffer.ob_end_flush();
+
+            //Return
             return false;
 
         }
-
-        //Save the output buffer contents in the output variable
-        echo "<hr /><br /><br />\r\n\r\n";
-        $this->output_buffer = $this->output_buffer.ob_end_flush();
 
     }
 
