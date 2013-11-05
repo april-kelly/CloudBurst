@@ -535,10 +535,13 @@ class video {
          * TODO: Make this function only effect the database inputs.
          */
 
+        //Type cast $this so we can iterate through it
         $array = (array) $this;
 
+        //Iterate through $array and addslashes() to each value
         foreach($array as $key => $value){
 
+            //Send escaped values back to $this
             $this->$key = addslashes($array[$key]);
 
         }
