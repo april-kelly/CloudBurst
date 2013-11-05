@@ -17,4 +17,5 @@ $test->read_meta('mlp.mp4');
 $test->fetch_imdb();
 $test->escape();
 $test->create_metadata();
+$test->create_media();
 echo $test->output();

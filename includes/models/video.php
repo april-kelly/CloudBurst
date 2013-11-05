@@ -567,8 +567,44 @@ class video {
     public function update_media(){
 
         /**
-         * Updates the media table with the contents of this object
+         * Updates an entry in the media table with the contents of this object
          */
+
+        //Setup output buffering
+        ob_start();
+        echo '<h3>Function: update_media() called:</h3>'."\r\n";
+
+        //Setup the database connection
+        $this->dbc = new db;
+        $this->dbc->connect();
+
+        //Escape bad chars
+        $this->escape();
+
+        //Setup Query
+        $query = "UPDATE `media` SET
+                `index`       = '".$this->index."',
+                `metadata_id` = '".$this->media_metadata_id."',
+                `location`    = '".$this->media_location."',
+                `comments`    = '".$this->media_comments."'
+                WHERE `index` = '".$this->index."';
+                ";
+
+        //Issue query
+        $this->dbc->insert($query);
+
+        //Send debugging info
+        echo 'Issued insert query: <br />'."\r\n";
+        echo '<pre>'.$query.'</pre><br />'."\r\n";
+
+        //Close the database connection
+        $this->dbc->close();
+
+        //Save the output buffer contents in the output variable
+        echo "<hr /><br /><br />\r\n\r\n";
+        $this->output_buffer = $this->output_buffer.ob_end_flush();
+
+
 
     }
 
