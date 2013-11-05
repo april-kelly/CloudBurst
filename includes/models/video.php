@@ -85,13 +85,12 @@ class video {
         echo '<h3>Function: read_meta() called:</h3>'."\r\n";
 
         //Dump the $ThisFileInfo variable
-
+        /*
         echo 'Dumping the meta data: <br />'."\r\n";
         echo '<pre>';
         var_dump($ThisFileInfo);
         echo '</pre>';
-
-
+        */
 
         //Type of video (tv show, movie, etc) (not supported currently in db)
         /*
@@ -288,7 +287,8 @@ class video {
                   `writers`,
                   `directors`,
                   `filming_locations`,
-                  `season`, `episode`,
+                  `season`,
+                  `episode`,
                   `episode_name`,
                   `episode_description`,
                   `comments`)
@@ -315,7 +315,7 @@ class video {
                   '".$this->episode_description."',
                   '".$this->comments."'
                   );";
-
+        
         //Issue query
         $this->dbc->insert($query);
 
@@ -416,37 +416,37 @@ class video {
 
             if(isset($array[0]->runtime)){
                 echo 'Runtime(s): '.implode(', ', $array[0]->runtime)."<br /> \r\n";
-                $this->runtime = $array[0]->runtime;
+                $this->runtime = implode(', ', $array[0]->runtime);
             }
 
             if(isset($array[0]->genres)){
                 echo 'Genre(s): '.implode(', ', $array[0]->genres)."<br /> \r\n";
-                $this->genres = $array[0]->genres;
+                $this->genres = implode(', ', $array[0]->genres);
             }
 
             if(isset($array[0]->language)){
                 echo 'Language(s): '.implode(', ', $array[0]->language)."<br /> \r\n";
-                $this->language = $array[0]->language;
+                $this->language = implode(', ', $array[0]->language);
             }
 
             if(isset($array[0]->country)){
                 echo 'Country(s): '.implode(', ', $array[0]->country)."<br /> \r\n";
-                $this->country = $array[0]->country;
+                $this->country = implode(', ', $array[0]->country);
             }
 
             if(isset($array[0]->actors)){
                 echo 'Actors: '.implode(', ', $array[0]->actors)."<br /> \r\n";
-                $this->actors = $array[0]->actors;
+                $this->actors = implode(', ', $array[0]->actors);
             }
 
             if(isset($array[0]->directors)){
                 echo 'Director(s): '.implode(', ', $array[0]->directors)."<br /> \r\n";
-                $this->directors = $array[0]->directors;
+                $this->directors = implode(', ', $array[0]->directors);
             }
 
             if(isset($array[0]->writers)){
                 echo 'Writer(s): '.implode(', ', $array[0]->writers)."<br /> \r\n";
-                $this->writers = $array[0]->writers;
+                $this->writers = implode(', ', $array[0]->writers);
             }
 
             if(isset($array[0]->filming_locations)){
