@@ -55,9 +55,24 @@ class video {
     //Control Variables
     public $item                    = '';
     public $dbc                     = '';
-    public $debug                   = true;
     public $output_buffer           = '';
 
+    //Constructor
+    public function __construct(){
+
+        //Setup output buffering
+
+            //Send a debugging header
+            ob_start();
+
+            //Header
+            echo '<h1>Class video Debugging mode enabled:';
+
+            //Save to output buffer
+            echo "<hr /><br /><br />\r\n\r\n";
+            $this->output_buffer = $this->output_buffer.ob_end_flush();
+
+    }
 
     //Reset variables
     public function reset(){
