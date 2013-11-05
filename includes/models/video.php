@@ -288,7 +288,10 @@ class video {
         $this->dbc = new db;
         $this->dbc->connect();
 
-        //Query the database
+        //Escape bad chars
+        $this->escape();
+
+        //Setup Query
         $query = "INSERT INTO `media` (`index`, `metadata_id`, `location`, `comments`)
                       VALUES (NULL,
                               '".$this->index."',
@@ -327,7 +330,10 @@ class video {
         $this->dbc = new db;
         $this->dbc->connect();
 
-        //Query the database
+        //Escape bad chars
+        $this->escape();
+
+        //Setup the Query
         $query = "INSERT INTO `metadata` (`index`,
                   `subset_id`,
                   `imdb_id`,
@@ -531,7 +537,7 @@ class video {
     public function escape(){
 
         /**
-         *Adds slashes to all of the database inputs (and everything else..)
+         * Adds slashes to all of the database inputs (and everything else..)
          * TODO: Make this function only effect the database inputs.
          */
 
