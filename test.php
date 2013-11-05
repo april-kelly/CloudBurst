@@ -13,7 +13,5 @@ include_once(ABSPATH.'/includes/models/users.php');
 include_once(ABSPATH.'/includes/models/video.php');
 
 $test = new video;
-$test->read_meta('mlp.mp4');
-$test->lookup();
-$test->fetch_imdb();
+$test->create_metadata();
 echo $test->output();

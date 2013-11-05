@@ -84,6 +84,15 @@ class video {
         ob_start();
         echo '<h3>Function: read_meta() called:</h3>'."\r\n";
 
+        //Dump the $ThisFileInfo variable
+
+        echo 'Dumping the meta data: <br />'."\r\n";
+        echo '<pre>';
+        var_dump($ThisFileInfo);
+        echo '</pre>';
+
+
+
         //Type of video (tv show, movie, etc) (not supported currently in db)
         /*
         if(isset($ThisFileInfo['tags']['quicktime']['stik'][0])){
@@ -262,11 +271,50 @@ class video {
         $this->dbc->connect();
 
         //Query the database
-        $query = "INSERT INTO `metadata` (`index`, `metadata_id`, `location`, `comments`)
-                      VALUES (NULL,
-                              '".$this->index."',
-                              '".$this->media_location."',
-                              '".$this->media_comments."')";
+        $query = "INSERT INTO `metadata` (`index`,
+                  `subset_id`,
+                  `imdb_id`,
+                  `cover`,
+                  `title`,
+                  `plot_simple`,
+                  `year`,
+                  `rated`,
+                  `rating`,
+                  `runtime`,
+                  `genres`,
+                  `language`,
+                  `country`,
+                  `actors`,
+                  `writers`,
+                  `directors`,
+                  `filming_locations`,
+                  `season`, `episode`,
+                  `episode_name`,
+                  `episode_description`,
+                  `comments`)
+                  VALUES (NULL,
+                  '".$this->subset_id."',
+                  '".$this->imdb_id."',
+                  '".$this->cover."',
+                  '".$this->title."',
+                  '".$this->plot_simple."',
+                  '".$this->year."',
+                  '".$this->rated."',
+                  '".$this->rating."',
+                  '".$this->runtime."',
+                  '".$this->genres."',
+                  '".$this->language."',
+                  '".$this->country."',
+                  '".$this->actors."',
+                  '".$this->writers."',
+                  '".$this->directors."',
+                  '".$this->filming_locations."',
+                  '".$this->season."',
+                  '".$this->episode."',
+                  '".$this->episode_name."',
+                  '".$this->episode_description."',
+                  '".$this->comments."'
+                  );";
 
         //Issue query
         $this->dbc->insert($query);
@@ -327,9 +375,11 @@ class video {
 
         //Debug
         /*
+        echo "Results of request: <br />\r\n";
         echo '<pre>';
         var_dump($array);
         echo '</pre>';
+        echo "<br />\r\n";
         */
 
         //Echo the results
