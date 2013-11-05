@@ -527,6 +527,23 @@ class video {
 
     }
 
+    //escape
+    public function escape(){
+
+        /**
+         *Adds slashes to all of the database inputs (and everything else..)
+         * TODO: Make this function only effect the database inputs.
+         */
+
+        $array = (array) $this;
+
+        foreach($array as $key => $value){
+
+            $this->$key = addslashes($array[$key]);
+
+        }
+
+    }
 
     //update_metadata
     public function update_metadata(){
