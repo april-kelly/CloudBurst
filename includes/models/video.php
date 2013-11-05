@@ -59,6 +59,49 @@ class video {
     public $output_buffer           = '';
 
 
+    //Reset variables
+    public function reset(){
+
+        /**
+         * Resets database fields to their default values.
+         */
+
+        //Database Fields
+
+        //metadata table
+
+        $this->index = '';
+            $this->subset_id = '';
+            $this->imdb_id                 = '';
+            $this->cover                   = '';
+            $this->title                   = '';
+            $this->plot_simple             = '';
+            $this->year                    = '';
+            $this->rated                   = '';
+            $this->rating                  = '';
+            $this->runtime                 = '';
+            $this->genres                  = '';
+            $this->language                = '';
+            $this->country                 = '';
+            $this->actors                  = '';
+            $this->writers                 = '';
+            $this->directors               = '';
+            $this->filming_locations       = '';
+            $this->season                  = '';
+            $this->episode                 = '';
+            $this->episode_name            = '';
+            $this->episode_description     = '';
+            $this->comments                = '';
+
+            //media table
+
+            $this->media_index             = '';
+            $this->media_metadata_id       = '';
+            $this->media_location          = '';
+            $this->media_comments          = '';
+
+    }
+
     //read_meta
     public function read_meta($filename){
 
@@ -315,7 +358,7 @@ class video {
                   '".$this->episode_description."',
                   '".$this->comments."'
                   );";
-        
+
         //Issue query
         $this->dbc->insert($query);
 
