@@ -716,6 +716,7 @@ class video {
         file_put_contents($name, $image);
 
         //Change the name of the file for database insert
+        echo 'Saved as: '.$this->cover;
         $this->cover = $name;
 
         //Save the output buffer contents in the output variable
@@ -724,6 +725,46 @@ class video {
 
     }
 
+    public function get_library() {
+
+        /**
+         * Fetches the first 10 unique videos in the database. Returns an associative array.
+         */
+
+        //Setup output buffering
+        ob_start();
+        echo '<h3>Function: get_library() called:</h3>'."\r\n";
+
+        //Setup the database connection
+        $this->dbc = new db;
+        $this->dbc->connect();
+
+        //Query
+        $query = 'SELECT  `index` ,  `title` ,  `cover` ,  `plot_simple` ,  `imdb_id` FROM metadata GROUP BY (imdb_id) LIMIT 0 , 9';
+
+        //Issue query
+        $results = $this->dbc->query($query);
+
+        //Send debugging info
+        echo 'Issued query: <br />'."\r\n";
+        echo '<pre>'.$query.'</pre><br />'."\r\n";
+        echo 'Results: <br />'."\r\n";
+        echo '<pre>';
+            var_dump($results);
+        echo '</pre><br />'."\r\n";
+
+
+        //Close the database connection
+        $this->dbc->close();
+
+        //Save the output buffer contents in the output variable
+        echo "<hr /><br /><br />\r\n\r\n";
+        $this->output_buffer = $this->output_buffer.ob_end_flush();
+
+        //Return the results
+        return $results;
+
+    }
 
     //output
     public function output(){
