@@ -305,7 +305,8 @@ class video {
 
         //Setup Query
         $query = "INSERT INTO `media` (`index`, `metadata_id`, `location`, `comments`)
-                      VALUES (NULL,
+                      VALUES (
+                              '".$this->media_index."',
                               '".$this->index."',
                               '".$this->media_location."',
                               '".$this->media_comments."')";
@@ -538,7 +539,7 @@ class video {
 
             if(isset($array[0]->imdb_id)){
                 echo 'IMDb id: '.$array[0]->imdb_id."<br /> \r\n";
-                $this->ibdb_id = $array[0]->imdb_id;
+                $this->imdb_id = $array[0]->imdb_id;
             }
         }
 
@@ -671,10 +672,6 @@ class video {
         ob_start();
         echo '<h3>Function: fetch_increment() called:</h3>'."\r\n";
 
-        //Setup the database connection
-        $this->dbc = new db;
-        $this->dbc->connect();
-
         //Determine next increment metadata table
         $query = "SHOW TABLE STATUS LIKE  'metadata'";
         $results = $this->dbc->query($query);
@@ -689,14 +686,9 @@ class video {
 
         echo 'The next index for the metadata table is: '.$this->media_next_index.".<br />\r\n";
 
-        //Close the database connection
-        $this->dbc->close();
-
         //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
         $this->output_buffer = $this->output_buffer.ob_end_flush();
-
-
 
     }
 
