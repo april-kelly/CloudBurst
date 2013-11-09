@@ -76,7 +76,7 @@ class video {
         //Setup the import_location variable
 
             //Add ABSPATH to the front
-            $this->import_location = ABSPATH.$this->import_location;
+            //$this->import_location = ABSPATH.$this->import_location;
 
     }
 
@@ -131,8 +131,8 @@ class video {
          */
 
         //Define which file we will read
-        $filename = $this->import_location.$filename;
-        $this->media_location = $filename;
+        $this->media_location = $this->import_location.$filename;
+        $filename = ABSPATH.$this->import_location.$filename;
 
         //setup getID3
         $getID3 = new getID3;
@@ -547,6 +547,39 @@ class video {
          * TODO: Make this function only effect the database inputs.
          */
 
+        //metadata table
+
+        $this->index                   = addslashes($this->index);
+        $this->subset_id               = addslashes($this->subset_id);
+        $this->imdb_id                 = addslashes($this->imdb_id);
+        $this->cover                   = addslashes($this->cover);
+        $this->title                   = addslashes($this->title);
+        $this->plot_simple             = addslashes($this->plot_simple);
+        $this->year                    = addslashes($this->year);
+        $this->rated                   = addslashes($this->rated);
+        $this->rating                  = addslashes($this->rating);
+        $this->runtime                 = addslashes($this->runtime);
+        $this->genres                  = addslashes($this->genres);
+        $this->language                = addslashes($this->language);
+        $this->country                 = addslashes($this->country);
+        $this->actors                  = addslashes($this->actors);
+        $this->writers                 = addslashes($this->writers);
+        $this->directors               = addslashes($this->directors);
+        $this->filming_locations       = addslashes($this->filming_locations);
+        $this->season                  = addslashes($this->season);
+        $this->episode                 = addslashes($this->episode);
+        $this->episode_name            = addslashes($this->episode_name);
+        $this->episode_description     = addslashes($this->episode_description);
+        $this->comments                = addslashes($this->comments);
+
+        //media table
+
+        $this->media_index             = addslashes($this->media_index);
+        $this->media_metadata_id       = addslashes($this->media_metadata_id);
+        $this->media_location          = addslashes($this->media_location);
+        $this->media_comments          = addslashes($this->media_comments);
+
+        /*
         //Type cast $this so we can iterate through it
         $array = (array) $this;
 
@@ -557,6 +590,7 @@ class video {
             $this->$key = addslashes($array[$key]);
 
         }
+        */
 
     }
 
