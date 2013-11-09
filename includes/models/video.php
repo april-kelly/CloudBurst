@@ -57,6 +57,8 @@ class video {
     public $dbc                     = '';
     public $output_buffer           = '';
     public $import_location         = 'content/uploads/'; //Well add the ABSPATH in the constructor
+    public $metadata_next_index     = '';
+    public $media_next_index        = '';
 
     //Constructor
     public function __construct(){
@@ -297,6 +299,10 @@ class video {
         //Escape bad chars
         $this->escape();
 
+        //Determine the next index
+        $this->fetch_increment();
+        $this->media_index = $this->media_next_index;
+
         //Setup Query
         $query = "INSERT INTO `media` (`index`, `metadata_id`, `location`, `comments`)
                       VALUES (NULL,
@@ -339,8 +345,13 @@ class video {
         //Escape bad chars
         $this->escape();
 
+        //Determine the next index
+        $this->fetch_increment();
+        $this->index = $this->metadata_next_index;
+
         //Setup the Query
-        $query = "INSERT INTO `metadata` (`index`,
+        $query = "INSERT INTO `metadata` (
+                  `index`,
                   `subset_id`,
                   `imdb_id`,
                   `cover`,
@@ -362,7 +373,8 @@ class video {
                   `episode_name`,
                   `episode_description`,
                   `comments`)
-                  VALUES (NULL,
+                  VALUES (
+                  '".$this->index."',
                   '".$this->subset_id."',
                   '".$this->imdb_id."',
                   '".$this->cover."',
@@ -636,6 +648,46 @@ class video {
         //Send debugging info
         echo 'Issued insert query: <br />'."\r\n";
         echo '<pre>'.$query.'</pre><br />'."\r\n";
+
+        //Close the database connection
+        $this->dbc->close();
+
+        //Save the output buffer contents in the output variable
+        echo "<hr /><br /><br />\r\n\r\n";
+        $this->output_buffer = $this->output_buffer.ob_end_flush();
+
+
+
+    }
+
+    //fetch_increment
+    public function fetch_increment(){
+
+        /**
+         * Determines the next increment in the media and metadata tables
+         */
+
+        //Setup output buffering
+        ob_start();
+        echo '<h3>Function: fetch_increment() called:</h3>'."\r\n";
+
+        //Setup the database connection
+        $this->dbc = new db;
+        $this->dbc->connect();
+
+        //Determine next increment metadata table
+        $query = "SHOW TABLE STATUS LIKE  'metadata'";
+        $results = $this->dbc->query($query);
+        $this->metadata_next_index = $results[0]['Auto_increment'];
+
+        echo 'The next index for the metadata table is: '.$this->metadata_next_index.".<br />\r\n";
+
+        //Determine next increment metadata table
+        $query = "SHOW TABLE STATUS LIKE  'media'";
+        $results = $this->dbc->query($query);
+        $this->media_next_index = $results[0]['Auto_increment'];
+
+        echo 'The next index for the metadata table is: '.$this->media_next_index.".<br />\r\n";
 
         //Close the database connection
         $this->dbc->close();
