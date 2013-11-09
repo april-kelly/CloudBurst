@@ -59,6 +59,7 @@ class video {
     public $import_location         = 'content/uploads/'; //Well add the ABSPATH in the constructor
     public $metadata_next_index     = '';
     public $media_next_index        = '';
+    public $cache_path              = 'content/cache/';
 
     //Constructor
     public function __construct(){
@@ -349,6 +350,9 @@ class video {
         //Determine the next index
         $this->fetch_increment();
         $this->index = $this->metadata_next_index;
+
+        //Cache the video's poster
+        $this->cache_image();
 
         //Setup the Query
         $query = "INSERT INTO `metadata` (
@@ -691,6 +695,35 @@ class video {
         $this->output_buffer = $this->output_buffer.ob_end_flush();
 
     }
+
+    //cache_image
+    public function cache_image(){
+
+        /**
+         * Downloads the video's poster and saves it into /content/cache/
+         */
+
+        //Setup output buffering
+        ob_start();
+        echo '<h3>Function: cache_image() called:</h3>'."\r\n";
+        echo 'Downloading: '.$this->cover;
+
+        //Come up with a unique filename
+        $name = $this->cache_path.time().'.jpg';
+
+        //Download the image
+        $image = file_get_contents($this->cover);
+        file_put_contents($name, $image);
+
+        //Change the name of the file for database insert
+        $this->cover = $name;
+
+        //Save the output buffer contents in the output variable
+        echo "<hr /><br /><br />\r\n\r\n";
+        $this->output_buffer = $this->output_buffer.ob_end_flush();
+
+    }
+
 
     //output
     public function output(){
