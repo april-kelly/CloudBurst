@@ -56,6 +56,7 @@ class video {
     public $item                    = '';
     public $dbc                     = '';
     public $output_buffer           = '';
+    public $import_location         = 'content/uploads/'; //Well add the ABSPATH in the constructor
 
     //Constructor
     public function __construct(){
@@ -71,6 +72,11 @@ class video {
             //Save to output buffer
             echo "<hr /><br /><br />\r\n\r\n";
             $this->output_buffer = $this->output_buffer.ob_end_flush();
+
+        //Setup the import_location variable
+
+            //Add ABSPATH to the front
+            $this->import_location = ABSPATH.$this->import_location;
 
     }
 
@@ -125,7 +131,7 @@ class video {
          */
 
         //Define which file we will read
-        $filename = ABSPATH.'content/uploads/'.$filename;
+        $filename = $this->import_location.$filename;
         $this->media_location = $filename;
 
         //setup getID3
