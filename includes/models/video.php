@@ -72,9 +72,10 @@ class video {
             //Header
             echo '<h1>Class video Debugging mode enabled:';
 
-            //Save to output buffer
+            //Save the output buffer contents in the output variable
             echo "<hr /><br /><br />\r\n\r\n";
-            $this->output_buffer = $this->output_buffer.ob_end_flush();
+            $this->output_buffer = $this->output_buffer.ob_get_contents();
+            ob_end_clean();
 
         //Setup the import_location variable
 
@@ -216,9 +217,10 @@ class video {
         }
         */
 
-        //End output buffering
+        //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
-        $this->output_buffer = $this->output_buffer.ob_end_flush();
+        $this->output_buffer = $this->output_buffer.ob_get_contents();
+        ob_end_clean();
 
         //Return the metadata
         return $meta;
@@ -261,7 +263,8 @@ class video {
 
             //Save the output buffer contents in the output variable
             echo "<hr /><br /><br />\r\n\r\n";
-            $this->output_buffer = $this->output_buffer.ob_end_flush();
+            $this->output_buffer = $this->output_buffer.ob_get_contents();
+            ob_end_clean();
 
             //Return
             return true;
@@ -273,7 +276,8 @@ class video {
 
             //Save the output buffer contents in the output variable
             echo "<hr /><br /><br />\r\n\r\n";
-            $this->output_buffer = $this->output_buffer.ob_end_flush();
+            $this->output_buffer = $this->output_buffer.ob_get_contents();
+            ob_end_clean();
 
             //Return
             return false;
@@ -324,8 +328,8 @@ class video {
 
         //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
-        $this->output_buffer = $this->output_buffer.ob_end_flush();
-
+        $this->output_buffer = $this->output_buffer.ob_get_contents();
+        ob_end_clean();
 
     }
 
@@ -415,8 +419,8 @@ class video {
 
         //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
-        $this->output_buffer = $this->output_buffer.ob_end_flush();
-
+        $this->output_buffer = $this->output_buffer.ob_get_contents();
+        ob_end_clean();
 
     }
 
@@ -549,7 +553,8 @@ class video {
 
         //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
-        $this->output_buffer = $this->output_buffer.ob_end_flush();
+        $this->output_buffer = $this->output_buffer.ob_get_contents();
+        ob_end_clean();
 
         //Return the abstract video object
         return $this;
@@ -659,9 +664,8 @@ class video {
 
         //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
-        $this->output_buffer = $this->output_buffer.ob_end_flush();
-
-
+        $this->output_buffer = $this->output_buffer.ob_get_contents();
+        ob_end_clean();
 
     }
 
@@ -692,7 +696,8 @@ class video {
 
         //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
-        $this->output_buffer = $this->output_buffer.ob_end_flush();
+        $this->output_buffer = $this->output_buffer.ob_get_contents();
+        ob_end_clean();
 
     }
 
@@ -721,7 +726,8 @@ class video {
 
         //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
-        $this->output_buffer = $this->output_buffer.ob_end_flush();
+        $this->output_buffer = $this->output_buffer.ob_get_contents();
+        ob_end_clean();
 
     }
 
@@ -759,12 +765,14 @@ class video {
 
         //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
-        $this->output_buffer = $this->output_buffer.ob_end_flush();
+        $this->output_buffer = $this->output_buffer.ob_get_contents();
+        ob_end_clean();
 
         //Return the results
         return $results;
 
     }
+
 
     //output
     public function output(){
