@@ -61,6 +61,8 @@ class video {
     public $media_next_index        = '';
     public $cache_path              = 'content/cache/';
     public $fail                    = false;
+    public $basename                = '';
+    public $storage_dir             = 'content/videos/';
 
     //Constructor
     public function __construct(){
@@ -136,6 +138,7 @@ class video {
          */
 
         //Define which file we will read
+        $this->basename = $filename;
         $this->media_location = $this->import_location.$filename;
         $filename = ABSPATH.$this->import_location.$filename;
 
@@ -636,6 +639,7 @@ class video {
         //Control
 
         $this->fail                    = false;
+        $this->basename                = '';
 
         /*
         //Type cast $this so we can iterate through it
@@ -683,7 +687,7 @@ class video {
         $query = "UPDATE `media` SET
                 `index`       = '".$this->index."',
                 `metadata_id` = '".$this->media_metadata_id."',
-                `location`    = '".$this->media_location."',
+                `location`    = '".$this->storage_dir.$this->basename."',
                 `comments`    = '".$this->media_comments."'
                 WHERE `index` = '".$this->index."';
                 ";
@@ -850,6 +854,15 @@ class video {
 
         //Reset the fields for the next import
         $this->reset();
+
+        //Move the file
+        if($this->fail == false){
+
+            //Only if the fail flag is not true
+            rename($this->media_location, ABSPATH.$this->storage_dir.$this->basename);
+
+        }
+
 
     }
 
