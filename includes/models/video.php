@@ -60,6 +60,7 @@ class video {
     public $metadata_next_index     = '';
     public $media_next_index        = '';
     public $cache_path              = 'content/cache/';
+    public $fail                    = false;
 
     //Constructor
     public function __construct(){
@@ -178,6 +179,8 @@ class video {
             $this->title = $meta['tv_show_name'];
         }else{
             $meta['tv_show_name'] = '';
+            $this->fail = true;
+            echo '<span style="color:red;">Error: TV Show Name not found! Failing</span>';
         }
 
         //TV Season (typically int)
@@ -297,6 +300,9 @@ class video {
         ob_start();
         echo '<h3>Function: create_media() called:</h3>'."\r\n";
 
+        //Stop if fail is true
+        if($this->fail == false){
+
         //Setup the database connection
         $this->dbc = new db;
         $this->dbc->connect();
@@ -326,6 +332,13 @@ class video {
         //Close the database connection
         $this->dbc->close();
 
+        }else{
+
+            echo '<span style="color:red;">Error $this->fail = true, failing.</span>';
+
+        }
+
+
         //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
         $this->output_buffer = $this->output_buffer.ob_get_contents();
@@ -343,6 +356,9 @@ class video {
         //Setup output buffering
         ob_start();
         echo '<h3>Function: create_metadata() called:</h3>'."\r\n";
+
+        //Stop if fail is true
+        if($this->fail == false){
 
         //Setup the database connection
         $this->dbc = new db;
@@ -417,6 +433,13 @@ class video {
         //Close the database connection
         $this->dbc->close();
 
+        }else{
+
+            echo '<span style="color:red;">Error $this->fail = true, failing.</span>';
+
+        }
+
+
         //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
         $this->output_buffer = $this->output_buffer.ob_get_contents();
@@ -454,6 +477,9 @@ class video {
         //Setup output buffering
         ob_start();
         echo '<h3>Function: fetch_imdb() called:</h3>'."\r\n";
+
+        //Stop if fail is true
+        if($this->fail == false){
 
         //Fetch the movie info
         $json = file_get_contents($url);
@@ -551,6 +577,13 @@ class video {
             }
         }
 
+
+        }else{
+
+            echo '<span style="color:red;">Error $this->fail = true, failing.</span>';
+
+        }
+
         //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
         $this->output_buffer = $this->output_buffer.ob_get_contents();
@@ -599,6 +632,10 @@ class video {
         $this->media_metadata_id       = addslashes($this->media_metadata_id);
         $this->media_location          = addslashes($this->media_location);
         $this->media_comments          = addslashes($this->media_comments);
+
+        //Control
+
+        $this->fail                    = false;
 
         /*
         //Type cast $this so we can iterate through it
@@ -712,6 +749,9 @@ class video {
         echo '<h3>Function: cache_image() called:</h3>'."\r\n";
         echo 'Downloading: '.$this->cover;
 
+        //Stop if fail is true
+        if($this->fail == false){
+
         //Come up with a unique filename
         $name = $this->cache_path.time().'.jpg';
 
@@ -722,6 +762,13 @@ class video {
         //Change the name of the file for database insert
         echo 'Saved as: '.$this->cover;
         $this->cover = $name;
+
+        }else{
+
+            echo '<span style="color:red;">Error $this->fail = true, failing.</span>';
+
+        }
+
 
         //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
@@ -739,6 +786,9 @@ class video {
         //Setup output buffering
         ob_start();
         echo '<h3>Function: get_library() called:</h3>'."\r\n";
+
+        //Stop if fail is true
+        if($this->fail == false){
 
         //Setup the database connection
         $this->dbc = new db;
@@ -761,6 +811,13 @@ class video {
 
         //Close the database connection
         $this->dbc->close();
+
+        }else{
+
+            echo '<span style="color:red;">Error $this->fail = true, failing.</span>';
+
+        }
+
 
         //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
@@ -790,6 +847,9 @@ class video {
 
         //Create an entry in the media table
         $this->create_media();
+
+        //Reset the fields for the next import
+        $this->reset();
 
     }
 

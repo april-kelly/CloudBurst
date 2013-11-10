@@ -13,15 +13,24 @@ include_once(ABSPATH.'/includes/models/users.php');
 include_once(ABSPATH.'/includes/models/video.php');
 
 $test = new video;
-/*
-$test->read_meta('mlp.mp4');
-$test->fetch_imdb();
-$test->cache_image();
-$test->escape();
-$test->create_metadata();
-$test->create_media();
-*/
 
-$test->get_library();
+//Scan the dir
+$dir = scandir(ABSPATH.'content/uploads');
+
+//Get rid of the . and ..
+unset($dir[0]);
+unset($dir[1]);
+
+//Start importing files
+foreach($dir as $file){
+
+    if(preg_match('/.mp4/', $file)){
+
+        //This is an mp4 so we will continue
+        $test->import($file);
+
+    }
+
+}
 
 echo $test->output();
