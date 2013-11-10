@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Name: Theme base
+ * Name: Theme Base
  * Programmer: Liam Kelly
  * Description: The base theme.
  * Date: 09/30/13
