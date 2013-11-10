@@ -62,7 +62,7 @@ if(isset($_REQUEST['username'])){
         //Determine if user is on lan
         $local = is_local();
 
-        if($local = true){
+        if($local == true){
 
             //User is local, we'll setup a session
             $_SESSION['user_id']     = '0';

@@ -48,18 +48,14 @@ if(isset($_REQUEST['e'])){
 
 }
 
-//var_dump($_SESSION);
-
-//$_SESSION['user_id'] = '1';
-//var_dump(isset($_SESSION['user_id']));
 //Figure out if the user is on the local area network
-/*
 if(!(is_local())){
     if(!(isset($_SESSION['user_id']))){
-        $request = 'login';
+        if(!($request == 'login')){
+            header('location: ./?p=login');
+        }
     }
 }
-*/
 
 //Determine what page the user is looking for
 switch($request){

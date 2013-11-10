@@ -14,13 +14,11 @@ if(!(defined('ABSPATH'))){
 //Reports if client is on the lan
 function is_local(){
 
-    return false;
-
     //Fetch the users ip address
-    //$ip = $_SERVER['REMOTE_ADDR'];
+    $ip = $_SERVER['REMOTE_ADDR'];
 
     //Local ip flag
-    //$local = false;
+    $local = false;
 
     //Debugging information (normally commented out)
     /*
@@ -29,7 +27,7 @@ function is_local(){
     */
 
     //Determine if ip is ipv4 or ipv6
-   /* if(preg_match('/:/', $ip)){
+    if(preg_match('/:/', $ip)){
 
         //Okay its, ipv6 check for local addresses
 
@@ -83,6 +81,6 @@ function is_local(){
     }
     */
 
-    //return $local;
+    return $local;
 
 }

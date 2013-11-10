@@ -48,27 +48,40 @@ class users {
         $query = "SELECT * FROM users WHERE `username` = '".$this->username."' AND `password` = '".$this->password."'";
         $results = $dbc->query($query);
 
-        //Count row returned
-        if(count($results) == '1' && isset($results[0]['index'])){
+        //Make sure the database returned good results
+        if(isset($results[0]['index'])){
 
-            //Good login, define user data
-            $this->index       = $results[0]['index'];
-            $this->firstname   = $results[0]['firstname'];
-            $this->lastname    = $results[0]['lastname'];
-            $this->username    = $results[0]['username'];
-            $this->password    = $results[0]['password'];
-            $this->login_count = $results[0]['login_count'];
-            $this->last_ip     = $results[0]['last_ip'];
-            $this->admin       = $results[0]['admin'];
+            //Count rows returned
+            if(count($results) == '1'){
 
-            return true;
+                //Good login, define user data
+                $this->index       = $results[0]['index'];
+                $this->firstname   = $results[0]['firstname'];
+                $this->lastname    = $results[0]['lastname'];
+                $this->username    = $results[0]['username'];
+                $this->password    = $results[0]['password'];
+                $this->login_count = $results[0]['login_count'];
+                $this->last_ip     = $results[0]['last_ip'];
+                $this->admin       = $results[0]['admin'];
+
+                return true;
+
+            }else{
+
+                //Bad login, return false
+                return false;
+
+            }
 
         }else{
 
-            //Bad login, return false
+            //Bad login or error message
             return false;
 
         }
+
+
+
 
 
 

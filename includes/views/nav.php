@@ -16,7 +16,7 @@ if(isset($_SESSION['user_id'])){
 }else{
 
     //User is not logged in, send to login
-    //header('location: ./?p=login');
+    header('location: ./?p=login');
     $name = '';
 
 
