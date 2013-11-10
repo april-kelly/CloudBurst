@@ -866,6 +866,83 @@ class video {
 
     }
 
+    //fetch_video
+    public function fetch_video($id){
+
+        /**
+         * Fetches information about a video in the database
+         */
+
+
+        //Setup output buffering
+        ob_start();
+        echo '<h3>Function: get_library() called:</h3>'."\r\n";
+
+        //Stop if fail is true
+        if($this->fail == false){
+
+            //Setup the database connection
+            $this->dbc = new db;
+            $this->dbc->connect();
+
+            //Sanitize user inputs
+            $id = $this->dbc->sanitize($id);
+
+            //Query
+            $query = 'SElECT * FROM media WHERE `index` = '.$id;
+
+            //Issue query
+            $media = $this->dbc->query($query);
+
+            $return = array();
+            $return['media'] = $media;
+
+            //Get the metadata table
+            if(isset($media[0]['metadata_id'])){
+
+                //Query
+                $query = 'SElECT * FROM metadata WHERE `index` = '.$media[0]['metadata_id'];
+
+                //Issue query
+                $metadata = $this->dbc->query($query);
+
+                $return['metadata'] = $metadata;
+            }
+
+
+            //Send debugging info
+            echo 'Results: <br />'."\r\n";
+            echo '<pre>';
+            var_dump($return);
+            echo '</pre><br />'."\r\n";
+
+            //Close the database connection
+            $this->dbc->close();
+
+            //Save the output buffer contents in the output variable
+            echo "<hr /><br /><br />\r\n\r\n";
+            $this->output_buffer = $this->output_buffer.ob_get_contents();
+            ob_end_clean();
+
+            //Return the results
+            return $return;
+
+        }else{
+
+            echo '<span style="color:red;">Error $this->fail = true, failing.</span>';
+
+            //Return false
+            return false;
+
+            //Save the output buffer contents in the output variable
+            echo "<hr /><br /><br />\r\n\r\n";
+            $this->output_buffer = $this->output_buffer.ob_get_contents();
+            ob_end_clean();
+
+        }
+
+    }
+
 
     //output
     public function output(){

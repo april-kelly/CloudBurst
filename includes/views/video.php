@@ -1,3 +1,23 @@
+<?php
+
+//Start the users session
+if(!(isset($_SESSION))){
+    session_start();
+}
+
+//includes
+if(!(defined('ABSPATH'))){
+    require_once('../../path.php');
+}
+require_once(ABSPATH.'includes/controllers/data.php');
+require_once(ABSPATH.'includes/models/video.php');
+
+//Fetch video
+$video = new video;
+$results = $video->fetch_video($_SESSION['video_id']);
+?>
+
+
 <style>
     article, aside, figure, footer, header, hgroup,
     menu, nav, section { display: block; }
@@ -13,14 +33,20 @@
         height: auto;
     }
 </style>
-<div id="container">
+<?php
+if(!(empty($results))){
+?>
+    <div id="container">
 
-    <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none"
-           data-setup="{}">
-        <source src="../videos/mlp.mp4" type='video/mp4' />
-    </video>
+        <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none"
+               data-setup="{}">
+            <source src="./<?php echo $results['media'][0]['location']; ?>" type='video/mp4' />
+        </video>
 
-</div>
+    </div>
+<?php
+}
+?>
 <script>
 
 

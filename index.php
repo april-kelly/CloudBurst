@@ -11,6 +11,7 @@
 if(!(defined('ABSPATH'))){
     require_once('./path.php');
 }
+include_once(ABSPATH.'includes/controllers/get_ip.php');
 
 //Setup the user's Session
 if(!(isset($_SESSION))){
@@ -44,6 +45,18 @@ if(isset($_REQUEST['p'])){
 //Send error messages to pages
 if(isset($_REQUEST['e'])){
     $_SESSION['e'] = $_REQUEST['e'];
+
+}
+
+//var_dump($_SESSION);
+
+//$_SESSION['user_id'] = '1';
+//var_dump(isset($_SESSION['user_id']));
+//Figure out if the user is on the local area network
+if(!(is_local())){
+    if(!(isset($_SESSION['user_id']))){
+        $request = 'login';
+    }
 }
 
 //Determine what page the user is looking for
@@ -67,8 +80,9 @@ switch($request){
 
     case 'video':
         $main_id = 'player';
-        $page = 'video.php';
+        $page = 'player.php';
         $details = true;
+        $_SESSION['video_id'] = $_REQUEST['id'];
     break;
 
     case 'settings':
@@ -111,6 +125,11 @@ switch($request){
     <script src="./includes/libraries/bxslider/jquery.bxslider.min.js"></script>
 
     <link href="http://bxslider.com/lib/jquery.bxslider.css" rel="stylesheet" />
+
+    <link href="./styles/styles.css" rel="stylesheet">
+    <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+    <script src="http://vjs.zencdn.net/c/video.js"></script>
+
 </head>
 
 <body>
