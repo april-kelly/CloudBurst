@@ -15,11 +15,10 @@ require_once(ABSPATH.'includes/models/video.php');
     //get the list of videos
     $video = new video;
     $list = $video->get_library();
-    $video->end_clean();
 
     foreach($list as $item){
 
-        echo '<li class="slide"><img src="'.$item['cover'].'"></li>';
+        echo '<li class="slide"><img src="'.$item['cover'].'" title="'.$item['title'].'"></li>';
     }
 
     ?>

@@ -24,4 +24,4 @@ $test->create_media();
 
 $test->get_library();
 
-//echo $test->output();
+echo $test->output();

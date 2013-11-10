@@ -566,7 +566,6 @@ class video {
 
         /**
          * Adds slashes to all of the database inputs (and everything else..)
-         * TODO: Make this function only effect the database inputs.
          */
 
         //metadata table
@@ -770,6 +769,27 @@ class video {
 
         //Return the results
         return $results;
+
+    }
+
+    //import
+    public function import($filename){
+
+        /**
+         * Imports a video file to the database.
+         */
+
+        //Read the files metadata
+        $this->read_meta($filename);
+
+        //Attempt to fetch more information from IMDb
+        $this->fetch_imdb();
+
+        //Create an entry in the metadata table
+        $this->create_metadata();
+
+        //Create an entry in the media table
+        $this->create_media();
 
     }
 
