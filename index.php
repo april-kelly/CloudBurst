@@ -54,6 +54,11 @@ if(!(is_local())){
         if(!($request == 'login')){
             header('location: ./?p=login');
         }
+        //Destroy an existing local session if outside network
+    }elseif($_SESSION['user_id'] == '0'){
+        if(!($request == 'login')){
+            header('location: ./?p=login');
+        }
     }
 }
 
