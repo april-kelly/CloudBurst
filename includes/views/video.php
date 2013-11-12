@@ -15,6 +15,7 @@ require_once(ABSPATH.'includes/models/video.php');
 //Fetch video
 $video = new video;
 $results = $video->fetch_video($_SESSION['video_id']);
+var_dump($results);
 ?>
 
 
