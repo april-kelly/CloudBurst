@@ -599,7 +599,7 @@ class video {
                             //Save the title
                             if(isset($episode->title)){
 
-                                echo 'found title';
+                                echo 'Episode Title Determined: '.$episode->title."<br /> \r\n";
                                 $this->episode_name = $episode->title;
 
                             }
@@ -785,8 +785,8 @@ class video {
 
         //Setup output buffering
         ob_start();
-        echo '<h3>Function: cache_image() called:</h3>'."\r\n";
-        echo 'Downloading: '.$this->cover;
+        echo '<h3>Function: cache_image() called:</h3>'."<br /> \r\n";
+        echo 'Downloading: '.$this->cover."<br /> \r\n";;
 
         //Stop if fail is true
         if($this->fail == false){
@@ -894,7 +894,7 @@ class video {
         if($this->fail == false){
 
             //Only if the fail flag is not true
-            rename($this->media_location, ABSPATH.$this->storage_dir.$this->basename);
+            echo 'rename('.$this->media_location.', '.ABSPATH.$this->storage_dir.$this->basename');';
 
         }
 
