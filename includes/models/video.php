@@ -492,10 +492,9 @@ class video {
         //Convert json to array
         $array = json_decode($json);
 
-        //Get rid of episode list before var_dumping
-        //unset($array[0]->episodes);
+        //Debug results (from imdb)
+        //This generates a lot of output so we'll keep it commented out unless needed
 
-        //Debug
         /*
         echo "Results of request: <br />\r\n";
         echo '<pre>';
@@ -504,7 +503,7 @@ class video {
         echo "<br />\r\n";
         */
 
-        //Echo the results
+        //Deal with the results
         if(isset($array[0])){
             if(isset($array[0]->poster->cover)){
                 echo '<img src="'.$array[0]->poster->cover.'" /><br />';
@@ -581,6 +580,40 @@ class video {
                 $this->imdb_id = $array[0]->imdb_id;
                 $this->media_imdb_id = $array[0]->imdb_id;
             }
+        }
+
+
+        //Figure out the episode title
+        if(isset($this->season) && isset($this->episode)){
+
+            if(isset($array[0]->episodes)){
+
+                foreach($array[0]->episodes as $episode){
+
+                    var_dump($episode);
+
+                    //find episode
+                    if($episode->season == $this->season){
+
+                        //Great, now find the episode
+                        if($episode->episode = $this->episode){
+
+                            //Save the title
+                            if(isset($episode->title)){
+
+                                echo 'found title';
+                                $this->episode_name = $episode->title;
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
         }
 
 

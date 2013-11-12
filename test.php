@@ -14,7 +14,7 @@ include_once(ABSPATH.'/includes/models/video.php');
 
 $test = new video;
 
-/*
+
 //Scan the dir
 $dir = scandir(ABSPATH.'content/uploads');
 
@@ -33,8 +33,9 @@ foreach($dir as $file){
     }
 
 }
-*/
 
-$test->fetch_episodes('tt1751105');
+
+//$test->fetch_episodes('tt1751105');
+
 
 echo $test->output();
