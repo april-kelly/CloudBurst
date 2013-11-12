@@ -8,10 +8,11 @@ body{
 
 #player{
     background: darkgray;
-    margin-top: 70px;
+    margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
     height: 1000px;
+    max-width: 80%;
 }
 
 #container{

@@ -1,4 +1,4 @@
-<div id="player">
+
 
     <?php include_once(ABSPATH.'includes/views/video.php'); ?>
 
@@ -8,4 +8,4 @@
 
     </div>
 
-</div>
+

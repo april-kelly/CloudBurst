@@ -5,8 +5,6 @@ if(!(isset($_SESSION))){
     session_start();
 }
 
-var_dump($_SESSION);
-
 //includes
 if(!(defined('ABSPATH'))){
     require_once('../../path.php');
@@ -26,8 +24,7 @@ $results = $video->fetch_video($_SESSION['video_id']);
 </style>
 
 <style type="text/css">
-    .container {
-        width: 80%;
+    #container {
         margin: 0px auto;
     }
     video {
