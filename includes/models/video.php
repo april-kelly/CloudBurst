@@ -949,6 +949,48 @@ class video {
 
     }
 
+    //fetch_episodes
+    public function fetch_episodes($imdb_id){
+
+        /**
+         * Retrieves a list of tv episodes from the database using an imdb_id
+         */
+
+        //Setup output buffering
+        ob_start();
+        echo '<h3>Function: fetch_episodes() called:</h3>'."\r\n";
+
+        //Setup the database connection
+        $this->dbc = new db;
+        $this->dbc->connect();
+
+        //Sanitize inputs
+        $imdb_id = $this->dbc->sanitize($imdb_id);
+
+        //Setup Query
+        $query = "SElECT * FROM `media` WHERE `imdb_id` = '".$imdb_id."'";
+
+        //Issue query
+        $results = $this->dbc->query($query);
+
+        //Send debugging info
+        echo 'I recieved the following: <br />'."\r\n";
+        echo '<pre>';
+            var_dump($results);
+        echo '</pre><br />'."\r\n";
+
+        //Close the database connection
+        $this->dbc->close();
+
+
+        //Save the output buffer contents in the output variable
+        echo "<hr /><br /><br />\r\n\r\n";
+        $this->output_buffer = $this->output_buffer.ob_get_contents();
+        ob_end_clean();
+
+
+    }
+
 
     //output
     public function output(){
