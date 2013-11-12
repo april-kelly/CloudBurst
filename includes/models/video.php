@@ -894,7 +894,7 @@ class video {
         if($this->fail == false){
 
             //Only if the fail flag is not true
-            echo 'rename('.ABSPATH.$this->media_location.', '.ABSPATH.$this->storage_dir.basename($this->media_location).');';
+            rename(ABSPATH.$this->media_location, ABSPATH.$this->storage_dir.basename($this->media_location));
 
         }
 
