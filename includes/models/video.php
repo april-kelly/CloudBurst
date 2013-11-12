@@ -4,6 +4,7 @@
  * Description: Handles video import and serves as an abstraction layer to the database
  * Date:        10/31/13
  * Programmer:  Liam Kelly
+ * TODO: Determine why media table is not inserting
  */
 
 //includes
