@@ -1018,7 +1018,7 @@ class video {
                 if(isset($episode['metadata_id'])){
 
                     //Query
-                    $query = 'SElECT * FROM metadata WHERE `index` = '.$media[0]['metadata_id'];
+                    $query = 'SElECT * FROM metadata WHERE `index` = '.$episode['metadata_id'];
 
 
                     //Issue query
