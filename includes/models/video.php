@@ -927,8 +927,6 @@ class video {
             //Query
             $query = 'SElECT * FROM media WHERE `index` = '.$id;
 
-echo $query;
-
             //Issue query
             $media = $this->dbc->query($query);
 
@@ -1005,8 +1003,34 @@ echo $query;
         //Setup Query
         $query = "SElECT * FROM `media` WHERE `imdb_id` = '".$imdb_id."'";
 
-        //Issue query
-        $results = $this->dbc->query($query);
+        //Get the media table
+        $media = $this->dbc->query($query);
+
+        $return = array();
+        $return['episodes'] = $media;
+
+        //Find metadata for each episode
+        $i = 0;
+        if(is_array($return['episodes'])){
+
+            foreach($return['episodes'] as $episode){
+
+                if(isset($episode['metadata_id'])){
+
+                    //Query
+                    $query = 'SElECT * FROM metadata WHERE `index` = '.$media[0]['metadata_id'];
+
+
+                    //Issue query
+                    $metadata = $this->dbc->query($query);
+
+                    $return['episodes'][$i]['metadata'] = $metadata;
+                    $i++;
+                }
+
+            }
+
+        }
 
         //Send debugging info
         echo 'I recieved the following: <br />'."\r\n";
@@ -1017,11 +1041,13 @@ echo $query;
         //Close the database connection
         $this->dbc->close();
 
-
         //Save the output buffer contents in the output variable
         echo "<hr /><br /><br />\r\n\r\n";
         $this->output_buffer = $this->output_buffer.ob_get_contents();
         ob_end_clean();
+
+        //Return results
+        return $return;
 
 
     }

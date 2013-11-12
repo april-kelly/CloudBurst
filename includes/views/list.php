@@ -10,10 +10,27 @@ if(!(defined('ABSPATH'))){
     require_once('../../path.php');
 }
 
-require_once(ABSPATH.'includes/controllers/data.php');
+require_once(ABSPATH.'includes/models/video.php');
 
-$dbc = new db;
+$video = new video;
+$results = $video->fetch_video($_SESSION['video_id']);
+$episode_list = $video->fetch_episodes($results['metadata'][0]['imdb_id']);
 
-$dbc->connect();
-$dbc->query($query);
-$dbc->close();
+?>
+<b><?php echo $results['metadata'][0]['title']; ?></b>
+<ul>
+<?php
+if(is_array($episode_list)){
+
+    $i = 0;
+    foreach($episode_list as $episode){
+        //var_dump($episode);
+
+        echo '<li>'.$episode[$i]['metadata'][0]['season'].'</li>';
+        $i++;
+    }
+
+
+}
+?>
+</ul>
