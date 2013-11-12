@@ -13,7 +13,7 @@ include_once(ABSPATH.'/includes/models/users.php');
 include_once(ABSPATH.'/includes/models/video.php');
 
 $test = new video;
-
+/*
 
 //Scan the dir
 $dir = scandir(ABSPATH.'content/uploads');
@@ -33,9 +33,10 @@ foreach($dir as $file){
     }
 
 }
-
+*/
 
 //$test->fetch_episodes('tt1751105');
 
-
+$results = $test->fetch_video('19');
+var_dump($results);
 echo $test->output();

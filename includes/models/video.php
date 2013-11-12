@@ -926,6 +926,8 @@ class video {
             //Query
             $query = 'SElECT * FROM media WHERE `index` = '.$id;
 
+echo $query;
+
             //Issue query
             $media = $this->dbc->query($query);
 
@@ -937,6 +939,7 @@ class video {
 
                 //Query
                 $query = 'SElECT * FROM metadata WHERE `index` = '.$media[0]['metadata_id'];
+
 
                 //Issue query
                 $metadata = $this->dbc->query($query);

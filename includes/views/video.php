@@ -5,6 +5,8 @@ if(!(isset($_SESSION))){
     session_start();
 }
 
+var_dump($_SESSION);
+
 //includes
 if(!(defined('ABSPATH'))){
     require_once('../../path.php');
