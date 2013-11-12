@@ -324,7 +324,7 @@ class video {
                       VALUES (
                               '".$this->media_index."',
                               '".$this->index."',
-                              '".$this->media_location."',
+                              '".$this->storage_dir.basename($this->media_location)."',
                               '".$this->media_imdb_id."',
                               '".$this->media_comments."')";
 
