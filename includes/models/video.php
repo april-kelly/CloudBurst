@@ -126,7 +126,7 @@ class video {
 
             $this->media_index             = '';
             $this->media_metadata_id       = '';
-            $this->media_location          = '';
+            //$this->media_location          = '';
             $this->media_comments          = '';
 
     }
