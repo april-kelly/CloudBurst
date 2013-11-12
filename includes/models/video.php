@@ -590,8 +590,6 @@ class video {
 
                 foreach($array[0]->episodes as $episode){
 
-                    var_dump($episode);
-
                     //find episode
                     if($episode->season == $this->season){
 
