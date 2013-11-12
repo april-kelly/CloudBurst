@@ -30,6 +30,7 @@ $episode_list = $video->fetch_episodes($results['metadata'][0]['imdb_id']);
         echo $episode['metadata'][0]['season'].' ';
         echo $episode['metadata'][0]['episode'].' ';
         echo $episode['metadata'][0]['episode_name'].' ';
+        echo "<br /> \r\n";
         echo $episode['metadata'][0]['episode_description'];
         echo '</li>';
 
