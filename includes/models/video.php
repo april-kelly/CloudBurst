@@ -51,6 +51,7 @@ class video {
             public $media_metadata_id       = '';
             public $media_location          = '';
             public $media_comments          = '';
+            public $media_imdb_id           = '';
 
     //Control Variables
     public $item                    = '';
@@ -318,11 +319,12 @@ class video {
         $this->media_index = $this->media_next_index;
 
         //Setup Query
-        $query = "INSERT INTO `media` (`index`, `metadata_id`, `location`, `comments`)
+        $query = "INSERT INTO `media` (`index`, `metadata_id`, `location`, `imdb_id`, `comments`)
                       VALUES (
                               '".$this->media_index."',
                               '".$this->index."',
                               '".$this->media_location."',
+                              '".$this->media_imdb_id."',
                               '".$this->media_comments."')";
 
         //Issue query
@@ -577,6 +579,7 @@ class video {
             if(isset($array[0]->imdb_id)){
                 echo 'IMDb id: '.$array[0]->imdb_id."<br /> \r\n";
                 $this->imdb_id = $array[0]->imdb_id;
+                $this->media_imdb_id = $array[0]->imdb_id;
             }
         }
 
@@ -635,6 +638,7 @@ class video {
         $this->media_metadata_id       = addslashes($this->media_metadata_id);
         $this->media_location          = addslashes($this->media_location);
         $this->media_comments          = addslashes($this->media_comments);
+        $this->media_imdb_id           = addslashes($this->media_imdb_id);
 
         //Control
 

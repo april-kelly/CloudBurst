@@ -18,7 +18,7 @@ require_once(ABSPATH.'includes/models/video.php');
 
     foreach($list as $item){
 
-        echo '<li class="slide"><a href="video.php?v="><img src="'.$item['cover'].'" title="'.$item['title'].'"></a></li>'."\r\n";
+        echo '<li class="slide"><a href="./?p=video&id="'.$item['imdb_id'].'"><img src="'.$item['cover'].'" title="'.$item['title'].'"></a></li>'."\r\n";
     }
 
     ?>
