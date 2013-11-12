@@ -8,7 +8,7 @@ if(!(isset($_SESSION))){
 //Start output buffering
 ob_start();
 
-/*
+
 
 //Includes
 require_once('./path.php');
@@ -29,7 +29,7 @@ if(isset($_REQUEST['id'])){
 
 //The video exists
 if(!(empty($results))){
-*/
+
 ?>
 
 <!DOCTYPE html>
@@ -130,11 +130,11 @@ if(!(empty($results))){
 </body>
 </html>
 <?php
-/*
+
 //In the event the video is not found
 }else{
     echo "\r\n<br />Video not found!";
 }
-*/
+
 //Send the output buffer
 ob_end_flush();
