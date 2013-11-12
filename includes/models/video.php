@@ -594,7 +594,7 @@ class video {
                     if($episode->season == $this->season){
 
                         //Great, now find the episode
-                        if($episode->episode = $this->episode){
+                        if($episode->episode == $this->episode){
 
                             //Save the title
                             if(isset($episode->title)){
