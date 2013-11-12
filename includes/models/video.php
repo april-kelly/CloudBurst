@@ -1035,7 +1035,7 @@ class video {
         //Send debugging info
         echo 'I recieved the following: <br />'."\r\n";
         echo '<pre>';
-            var_dump($results);
+            var_dump($return);
         echo '</pre><br />'."\r\n";
 
         //Close the database connection
