@@ -23,15 +23,12 @@ $episode_list = $video->fetch_episodes($results['metadata'][0]['imdb_id']);
 
 
     foreach($episode_list['episodes'] as $episode){
-        //var_dump($episode);
 
         echo '<li>';
         echo '<a href="./?p=video&id='.$episode['metadata_id'].'">Play</a> ';
         echo $episode['metadata'][0]['season'].' ';
         echo $episode['metadata'][0]['episode'].' ';
         echo $episode['metadata'][0]['episode_name'].' ';
-        echo "<br /> \r\n";
-        echo $episode['metadata'][0]['episode_description'];
         echo '</li>';
 
     }
