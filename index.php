@@ -41,6 +41,7 @@ if(isset($_REQUEST['p'])){
 }else{
     $request = 'home';
 }
+$request = str_replace('/', '', $request);
 
 //Send error messages to pages
 if(isset($_REQUEST['e'])){

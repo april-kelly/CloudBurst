@@ -14,6 +14,11 @@ $array = explode('/', $_REQUEST['url']);
 $version = $array[1];
 $format = $array[2];
 
+//Get rid of the api version and format
+unset($array[1]);
+unset($array[2]);
+$url = implode('/', $array);
+
 if(file_exists('api.'.$version.'.php')){
 
     //The api version exists, invoke it
