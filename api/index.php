@@ -19,11 +19,17 @@ unset($array[1]);
 unset($array[2]);
 $url = implode('/', $array);
 
+//Prepare options
+$options = $_REQUEST;
+unset($options['url']);
+$options = json_encode($options);
+
 if(file_exists('api.'.$version.'.php')){
 
     //The api version exists, invoke it
     define('url', $url);
     define('format', $format);
+    define('options', $options);
     require_once('api.'.$version.'.php');
 
 

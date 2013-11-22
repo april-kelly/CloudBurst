@@ -80,11 +80,6 @@ class users {
 
         }
 
-
-
-
-
-
     }
 
     //Update function
