@@ -8,37 +8,8 @@
 
 //Includes
 require_once('./path.php');
-include_once(ABSPATH.'/includes/models/abstract_video.php');
-include_once(ABSPATH.'/includes/models/users.php');
-include_once(ABSPATH.'/includes/models/video.php');
+include_once(ABSPATH.'/includes/models/pdo.php');
 
-$test = new video;
-
-/*
-//Scan the dir
-$dir = scandir(ABSPATH.'content/uploads');
-
-//Get rid of the . and ..
-unset($dir[0]);
-unset($dir[1]);
-
-//Start importing files
-foreach($dir as $file){
-
-    if(preg_match('/.mp4/', $file)){
-
-        //This is an mp4 so we will continue
-        $test->import($file);
-
-    }
-
-}
-*/
-
-$results = $test->fetch_episodes('tt1751105');
-
-var_dump($results['episodes']);
-
-//$results = $test->fetch_video('19');
-//var_dump($results);
-echo $test->output();
+$test = new db;
+$results = $test->query('SElECT * FROM metadata');
+var_dump($results);

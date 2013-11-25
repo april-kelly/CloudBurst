@@ -18,7 +18,7 @@ $options = json_decode(options);
 //Define routes
 switch(url){
 
-    case '/get/video/':
+    case '/fetch/video/':
 
         $video = new video;
         $response = $video->fetch_video($options->id);
