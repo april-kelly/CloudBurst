@@ -22,11 +22,12 @@ class settings{
         //Establish a connection to the database
         $this->dbc = new db;
 
-
     }
 
     //fetch function
     public function fetch(){
+
+
 
     }
 

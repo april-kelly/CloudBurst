@@ -18,6 +18,13 @@ class db{
 
     public function __construct(){
 
+        //Connect to the database
+        $this->connect();
+
+    }
+
+    public function connect(){
+
         //Attempt to connect to the database
         try {
             $this->dbc = new PDO('mysql:host=localhost;dbname='.$this->db_name, $this->db_user, $this->db_pass);
@@ -137,6 +144,13 @@ class db{
             return false;
 
         }
+
+    }
+
+    public function __destruct(){
+
+        //Destroy the connection
+        $this->close();
 
     }
 
