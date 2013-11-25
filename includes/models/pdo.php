@@ -57,6 +57,13 @@ class db{
 
     }
 
+    public function prepare_settings(){
+
+        //Prepare for a settings insert
+
+
+    }
+
     public function query($query){
 
         //Make sure we have not failed

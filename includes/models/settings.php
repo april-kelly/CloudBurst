@@ -34,7 +34,7 @@ class settings{
     }
 
     //push function
-    public function push(){
+    public function push($settings){
 
 
 
