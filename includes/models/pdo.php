@@ -13,8 +13,10 @@ class db{
     public $db_user = 'root';
     public $db_pass = 'kd0hdf';
     public $dbc = '';
+    public $results = '';
     public $fail = false;
     public $prepared = false;
+    public $errors = '';
 
     public function __construct(){
 
@@ -27,11 +29,15 @@ class db{
 
         //Attempt to connect to the database
         try {
+
             $this->dbc = new PDO('mysql:host=localhost;dbname='.$this->db_name, $this->db_user, $this->db_pass);
             $this->dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
+
+        }catch(PDOException $e){
+
+            $this->errors = $this->errors."\r\n".$e->getMessage();
             $this->fail = true;
+
         }
 
     }
@@ -56,24 +62,41 @@ class db{
         //Make sure we have not failed
         if($this->fail == false){
 
-            //Query the database
-            $results =  $this->dbc->query($query);
+            //Attempt to query the database
+            try{
 
-            if(is_object($results)){
+                $this->results =  $this->dbc->query($query);
 
-                while($row = $results->fetchALL()) {	//fetch assoc array
-                    $array[] = $row;
-                }
+            }catch(PDOException $e){
 
-            }else{
-
-                return false;
+                $this->errors = $this->errors.$e->getMessage();
+                $this->fail = true;
 
             }
 
-            if(!(empty($array))){
+            if($this->fail == false){
 
-                return $array;	//return results
+                if(is_object($this->results)){
+
+                    while($row = $this->results->fetchALL()) {	//fetch assoc array
+                        $array[] = $row;
+                    }
+
+                }else{
+
+                    return false;
+
+                }
+
+                if(!(empty($array))){
+
+                    return $array;	//return results
+
+                }else{
+
+                    return false;
+
+                }
 
             }else{
 
@@ -97,12 +120,40 @@ class db{
             //Make sure we have not failed
             if($this->fail == false){
 
-                $results = $this->execute($array);
+                //Attempt to execute
+                try{
 
-                if(is_object($results)){
+                    $this->results =  $this->dbc->execute($this->prepared);
 
-                    while($row = $results->fetchALL()) {	//fetch assoc array
-                        $array[] = $row;
+                }catch(PDOException $e){
+
+                    $this->errors = $this->errors.$e->getMessage();
+                    $this->fail = true;
+
+                }
+
+                if($this->fail == false){
+
+                    if(is_object($this->results)){
+
+                        while($row = $this->results->fetchALL()) {	//fetch assoc array
+                            $array[] = $row;
+                        }
+
+                    }else{
+
+                        return false;
+
+                    }
+
+                    if(!(empty($array))){
+
+                        return $array;	//return results
+
+                    }else{
+
+                        return false;
+
                     }
 
                 }else{
@@ -111,17 +162,15 @@ class db{
 
                 }
 
-                if(!(empty($array))){
+            }else{
 
-                    return $array;	//return results
-
-                }else{
-
-                    return false;
-
-                }
+                return false;
 
             }
+
+        }else{
+
+            return false;
 
         }
 
@@ -144,6 +193,13 @@ class db{
             return false;
 
         }
+
+    }
+
+    public function get_errors(){
+
+        //Spit out any error messages
+        echo $this->errors;
 
     }
 

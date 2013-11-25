@@ -15,6 +15,7 @@ require_once('pdo.php');
 class settings{
 
     public $dbc;
+    public $settings;
 
     //constructor
     public function __construct(){
@@ -27,16 +28,16 @@ class settings{
     //fetch function
     public function fetch(){
 
-
+        //fetch the settings
+        $this->settings = $this->dbc->query('SELECT * FROM settings');
 
     }
 
-    //update function
-
-    //remove function
-
-    //add function
+    //push function
+    public function push(){
 
 
+
+    }
 
 }
