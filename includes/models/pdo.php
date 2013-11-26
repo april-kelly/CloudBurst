@@ -57,10 +57,14 @@ class db{
 
     }
 
-    public function prepare_settings(){
+    public function insert($query){
 
-        //Prepare for a settings insert
+        /**
+         * Name:        insert
+         * Description: for compatibility with data.php (will be deprecated)
+         */
 
+        $this->query($query);
 
     }
 
@@ -119,7 +123,7 @@ class db{
 
     }
 
-    public function execute($array){
+    public function execute($handle, $array){
 
         //Make sure a prepared statement has been defined
         if($this->prepared == true){
@@ -130,7 +134,7 @@ class db{
                 //Attempt to execute
                 try{
 
-                    $this->results =  $this->dbc->execute($this->prepared);
+                    $handle->execute($array);
 
                 }catch(PDOException $e){
 
@@ -139,21 +143,15 @@ class db{
 
                 }
 
+                //Check for failure
                 if($this->fail == false){
 
-                    if(is_object($this->results)){
+                    if(is_object($handle)){
 
-                        while($row = $this->results->fetchALL()) {	//fetch assoc array
+                        while($row = $handle->fetch(PDO::FETCH_ASSOC)) {
                             $array[] = $row;
                         }
 
-                    }else{
-
-                        return false;
-
-                    }
-
-                    if(!(empty($array))){
 
                         return $array;	//return results
 
@@ -183,6 +181,30 @@ class db{
 
     }
 
+    //Prepared statements
+    public function prepare_media(){
+
+        //Make sure we have not failed
+        if($this->fail == false){
+
+            //Prepare the query
+            $handle = $this->dbc->prepare('SELECT * FROM `cloudburst`.`media` WHERE `index` = :id');
+
+            //Let the excute function know that we have defined a query
+            $this->prepared = true;
+
+            //Return the handle
+            return $handle;
+
+        }else{
+
+            //We failed earlier so return false
+            return false;
+
+        }
+
+    }
+
     public function close(){
 
         //Make sure we have not failed
@@ -205,14 +227,29 @@ class db{
 
     public function get_errors(){
 
-        //Spit out any error messages
-        echo $this->errors;
+        /**
+         * Name:         get_errors
+         * Description:  Echos out any error messages saved in $this->errors
+         */
+
+        //Check for errors
+        if(!(empty($this->errors))){
+
+            //Spit out any error messages
+            echo "<br />".$this->errors."<br />";
+
+        }
 
     }
 
     public function __destruct(){
 
-        //Destroy the connection
+        /**
+         * Name:        __destruct
+         * Description: Closes the database connection on destruct.
+         */
+
+        //Destroy the database connection
         $this->close();
 
     }

@@ -11,7 +11,7 @@
 if(!(defined('ABSPATH'))){
     require_once('../../path.php');
 }
-require_once(ABSPATH.'includes/controllers/data.php');
+require_once(ABSPATH.'includes/models/pdo.php');
 require_once(ABSPATH.'includes/libraries/getID3-1.9.7/getid3/getid3.php');
 
 class video {

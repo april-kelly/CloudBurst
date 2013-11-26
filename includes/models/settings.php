@@ -37,7 +37,6 @@ class settings{
     public function push($settings){
 
 
-
     }
 
 }
