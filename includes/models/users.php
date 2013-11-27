@@ -10,7 +10,7 @@
 if(!(defined('ABSPATH'))){
     require_once('../../path.php');
 }
-require_once(ABSPATH.'includes/controllers/data.php');
+require_once(ABSPATH.'includes/models/pdo.php');
 
 class users {
 
@@ -30,18 +30,21 @@ class users {
             public $debug       = true;
 
     //Login function
-    public function login(){
+    public function login($username, $password){
 
         /**
          * This Function logs a user in.
          */
+
+        $this->username = $username;
+        $this->password = $password;
 
         //Setup databasea connection
         $dbc = new db;
         $dbc->connect();
 
         //sanitize inputs
-        $this->username = $dbc->sanitize($this->username);
+        //$this->username = $dbc->sanitize($this->username);
         $this->password = hash('SHA512', $this->password);
 
         //look for user in database
@@ -49,20 +52,20 @@ class users {
         $results = $dbc->query($query);
 
         //Make sure the database returned good results
-        if(isset($results[0]['index'])){
+        if(isset($results[0][0]['index'])){
 
             //Count rows returned
             if(count($results) == '1'){
 
                 //Good login, define user data
-                $this->index       = $results[0]['index'];
-                $this->firstname   = $results[0]['firstname'];
-                $this->lastname    = $results[0]['lastname'];
-                $this->username    = $results[0]['username'];
-                $this->password    = $results[0]['password'];
-                $this->login_count = $results[0]['login_count'];
-                $this->last_ip     = $results[0]['last_ip'];
-                $this->admin       = $results[0]['admin'];
+                $this->index       = $results[0][0]['index'];
+                $this->firstname   = $results[0][0]['firstname'];
+                $this->lastname    = $results[0][0]['lastname'];
+                $this->username    = $results[0][0]['username'];
+                $this->password    = $results[0][0]['password'];
+                $this->login_count = $results[0][0]['login_count'];
+                $this->last_ip     = $results[0][0]['last_ip'];
+                $this->admin       = $results[0][0]['admin'];
 
                 return true;
 

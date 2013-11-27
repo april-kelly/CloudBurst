@@ -205,6 +205,29 @@ class db{
 
     }
 
+    public function prepare($query){
+
+        //Make sure we have not failed
+        if($this->fail == false){
+
+            //Prepare the query
+            $handle = $this->dbc->prepare($query);
+
+            //Let the excute function know that we have defined a query
+            $this->prepared = true;
+
+            //Return the handle
+            return $handle;
+
+        }else{
+
+            //We failed earlier so return false
+            return false;
+
+        }
+
+    }
+
     public function close(){
 
         //Make sure we have not failed

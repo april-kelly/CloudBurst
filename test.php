@@ -9,29 +9,10 @@
 //Includes
 require_once('./path.php');
 include_once(ABSPATH.'/includes/models/settings.php');
-/*
-$username = 'root';
-$password = 'kd0hdf';
-$id = 5;
-try {
-    $conn = new PDO('mysql:host=localhost;dbname=cloudburst', $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+require_once(ABSPATH.'/includes/models/video.php');
+require_once(ABSPATH.'/includes/models/tables/media.table.php');
 
-    $stmt = $conn->prepare('SELECT * FROM media WHERE `index` = :id');
-    $stmt->execute(array('id' => $id));
-
-    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $array[] = $row;
-    }
-} catch(PDOException $e) {
-    echo 'ERROR: ' . $e->getMessage();
-}
-var_dump($array);
-*/
-$test = new db;
-$handle = $test->prepare_media();
-$results = $test->execute($handle, array('id' => 1));
+$test = new media;
+$results = $test->lookup(1);
 
 var_dump($results);
-
-$test->get_errors();

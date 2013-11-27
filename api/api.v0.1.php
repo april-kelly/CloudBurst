@@ -10,6 +10,7 @@ if(!(defined('ABSPATH'))){
     require_once('../path.php');
 }
 require_once(ABSPATH.'includes/models/video.php');
+require_once(ABSPATH.'includes/models/users.php');
 
 //Handel Options
 $options = json_decode(options);
@@ -17,6 +18,52 @@ $options = json_decode(options);
 
 //Define routes
 switch(url){
+
+    /**
+     * User related routes
+     */
+
+    case '/users/login/':
+
+        //Make sure both username and password are sent
+        if(isset($options->username) && isset($options->password)){
+
+            $users = new users;
+            $result = $users->login($options->username, $options->password);
+
+            //Make sure we got a good result
+            if($result == true){
+
+                $response = $users;
+
+            }else{
+
+                //Bad login
+                return false;
+
+            }
+
+        }else{
+
+            //Let the user know of a bad combo
+            $response = false;
+
+        }
+
+    break;
+
+    case '/users/logout/':
+
+        //Destroy the session
+        session_destroy();
+
+        $response = true;
+
+    break;
+
+    /**
+     * End user routes
+     */
 
     case '/fetch/video/':
 
