@@ -82,18 +82,20 @@ class media {
         }
 
         //Prepare the query
-        $query = 'INSERT INTO media (`media_id`, `filename`, `server_adderess`, `resolution`) VALUES (:media_id, :filename, :server_adderess, :resolution)';
+        $query = 'INSERT INTO media (`media_id`, `filename`, `server_address`, `resolution`) VALUES (:media_id, :filename, :server_address, :resolution)';
         $handle = $this->dbc->prepare($query);
 
         //Execute the query
-        $parameters = array('index'    => $this->media_id,
+        $parameters = array('media_id'    => $this->media_id,
                             'filename' => $this->filename,
-                            'server_address' => $this->server_adderess;
-    );
+                            'server_address' => $this->server_adderess,
+                            'resolution' => $this->resolution
+        );
+
         $status = $handle->execute($parameters);
 
         //Get the results and return
-        if($status == true){
+        /*if($status == true){
 
             while($row = $handle->fetch(PDO::FETCH_ASSOC)) {
                 $array[] = $row;
@@ -115,7 +117,7 @@ class media {
 
             return false;
 
-        }
+        }*/
 
     }
 

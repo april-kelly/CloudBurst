@@ -13,6 +13,12 @@ require_once(ABSPATH.'/includes/models/video.php');
 require_once(ABSPATH.'/includes/models/tables/media.table.php');
 
 $test = new media;
-$results = $test->lookup(1);
+
+$test->media_id = '122';
+$test->filename = 'adsfasdf.mp4';
+$test->resolution = '720p';
+$test->server_adderess = 'localhost';
+
+$results = $test->insert();
 
 var_dump($results);
