@@ -1,6 +1,6 @@
 <ul>
-    <li><a href="?p=tv">TV</a></li>
-    <li><a href="?p=live">Live TV</a></li>
-    <li><a href="?p=settings">Settings</a></li>
-    <li><a href="?p=logout">Hi, <?php echo $name;?></a></li>
+    <li><a href="">Status</a></li>
+    <li><a href="">Users</a></li>
+    <li><a href="">General</a></li>
+    <li><a href="">Advanced</a></li>
 </ul>

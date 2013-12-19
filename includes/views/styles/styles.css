@@ -122,12 +122,11 @@ For the settings
 #sidebar{
     float: left;
     width: 20%;
-    background-color: white;
 }
 
 #sidebar a{
     text-decoration: none;
-    color: graytext;
+    color: #424242;
 }
 
 #sidebar li{
@@ -137,7 +136,6 @@ For the settings
     list-style-type: none;
     display: block;
     font: 23px times, serif;
-    color: graytext;
 }
 
 #sidebar li:hover{
