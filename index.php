@@ -79,7 +79,12 @@ switch($request){
 
     case 'tv':
         $main_id = 'home';
-        $page = 'tv.php';
+        $page = 'home.php';
+    break;
+
+    case 'live':
+        $main_id = 'live';
+        $page = 'live.php';
     break;
 
     case 'video':

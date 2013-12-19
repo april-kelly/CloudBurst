@@ -38,6 +38,37 @@ For the home page:
 }
 
 /*
+For the live tv page
+*/
+
+#live{
+
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    background-color: #bbb;
+    box-shadow: 0 5px 24px #111;
+
+}
+
+#live iframe {
+
+    border: none;
+
+}
+
+.video {
+    width: 750px;
+    height: 450px;
+}
+
+.listings {
+    width: 300px;
+    height: 450px;
+}
+
+/*
 For the login page:
 */
 
