@@ -26,9 +26,13 @@ if(isset($_SESSION['user_id'])){
 
     <ul>
         <li><a href="?p=tv">TV</a></li>
+        <!--
+        //The following are not implemented yet
         <li><a href="?p=movies">Movies</a></li>
         <li><a href="?p=music">Music</a></li>
         <li><a href="?p=photos">Photos</a></li>
+        -->
+        <li><a href="?p=live">Live TV</a></li>
         <li><a href="?p=settings">Settings</a></li>
         <li><a href="?p=logout">Hi, <?php echo $name;?></a></li>
     </ul>

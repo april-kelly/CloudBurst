@@ -111,13 +111,14 @@ For the settings
 */
 
 #settings{
-    margin-top: 50px;
+    margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
     width: 70%;
     background-color: lightgray;
 }
 
+/*
 #sidebar{
     width: 10%;
     background-color: lightgray;
@@ -125,13 +126,15 @@ For the settings
     height: 800px;
     z-index: -1000;
 }
+*/
+
 #set {
-    width: 60%;
+    width: 70%;
     height: 800px;
     position: absolute;
-    margin-left: 10%;
     background-color: lightgray;
     border-left: solid 1px black;
+    box-shadow: 0 5px 24px #111;
 }
 
 /*
