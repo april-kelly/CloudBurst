@@ -118,15 +118,32 @@ For the settings
     background-color: lightgray;
 }
 
-/*
+
 #sidebar{
-    width: 10%;
-    background-color: lightgray;
-    position: absolute;
-    height: 800px;
-    z-index: -1000;
+    float: left;
+    width: 20%;
+    background-color: white;
 }
-*/
+
+#sidebar a{
+    text-decoration: none;
+    color: graytext;
+}
+
+#sidebar li{
+    float: left;
+    padding: 10px;
+    width: 100%;
+    list-style-type: none;
+    display: block;
+    font: 23px times, serif;
+    color: graytext;
+}
+
+#sidebar li:hover{
+    background-color: whitesmoke;
+
+}
 
 #set {
     width: 70%;
